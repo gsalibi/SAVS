@@ -1,31 +1,22 @@
 body {
     font-family: "Montserrat";
-    text-align: center;
+    text-align: justify;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Montserrat-Bold";
-}
-
-p {
-    color: #8f8f8f;
+    text-align: center;
 }
 
 ul {
-    color: #8f8f8f;
     text-align: left;
 }
 
-/* Headings */
 
 /* Containers */
 
 .container-fluid {
     padding: 4% 10%;
-}
-
-.justify-text {
-    text-align: justify;
 }
 
 /* Sections */
@@ -36,7 +27,12 @@ ul {
 }
 
 .white-section {
+    color: #6c757d;
     background-color: #fff;
+}
+
+.card-header {
+    color: #343a40;
 }
 
 .navbar-brand {
@@ -109,6 +105,21 @@ ul {
 .social-icon {
     margin: 20px 10px;
 }
+
+#footer {
+    text-align: center;
+    color:#343a40;
+}
+
+#form-identified, #form-1, #form-2, #form-3, #form-4, #submit {
+    display: none; 
+} 
+
+#evidences {
+    color: #fff;
+}
+
+
 
 @media (max-width: 1028px) {
     #title {
