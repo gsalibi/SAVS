@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAVS</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="scripts/scripts.js"></script>
+</head>
+
+<body>
+    <section class="colored-section" id="title">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="">SAVS</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Como Funciona</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#form-type">Denúncia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#evidences">Evidências</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+
+    <!-- Form type -->
+    <section class="white-section" id="form-type">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Tipo de Denúncia</h5>
+                <div class="card-body" style="text-align: center;">
+                    <p class="card-text">Selecione o tipo de denúncia abaixo: </p>
+                    <form name="type" onchange="displayForms()">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1">Identificada</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">Anônima</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Personal Infos-->
+    <section class="white-section" id="form-identified">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Informações Pessoais</h5>
+                <div class="card-body">
+                    <br>
+                    <form name="form-identified">
+                        <div class="form-row">
+                            <div class="form-group col-md-10">
+                                <input type="text" class="form-control" placeholder="Nome Completo">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" placeholder="RA/Matrícula">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option1" id="inlineCheckbox">
+                                <label class="form-check-label" for="inlineCheckbox">
+                                    Nome Social
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <input type="text" id="cep" class="form-control" placeholder="CEP" maxlength="9"
+                                    onblur="cepSearch(this.value)">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" id="neighborhood" class="form-control" placeholder="Bairro" disabled>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" id="city" class="form-control" placeholder="Cidade" disabled>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="uf" class="form-control" placeholder="UF" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-10">
+                                <input type="text" id="address" class="form-control" placeholder="Endereço" disabled>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="number" id="number" class="form-control" placeholder="nº">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" placeholder="E-mail">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="tel" class="form-control" placeholder="Celular/Telefone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" onchange="displayUniversityInfos()">
+                                <option selected disabled>Vínculo...</option>
+                                <option>Aluna(o) de graduação</option>
+                                <option>Aluna(o) de pós-graduação</option>
+                                <option>Funcionária(o)</option>
+                                <option>Docente</option>
+                                <option>Terceirizada(o)</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <select id="inputInstitute" class="form-control" style="display: none;">
+                                    <option selected disabled>Instituto/Faculdade/Órgão...</option>
+                                    <option>Instituto 1</option>
+                                    <option>Instituto 2</option>
+                                    <option>Instituto 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <select id="inputCourse" class="form-control" style="display: none;">
+                                    <option selected disabled>Curso...</option>
+                                    <option>Curso 1</option>
+                                    <option>Curso 2</option>
+                                    <option>Curso 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Complaint-->
+    <section class="white-section" id="form-1">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Informações Sobre a Queixa</h5>
+                <div class="card-body">
+                    <form name="form-1">
+                        <div class="form-group">
+                            <p class="card-text">Colocar breve definição dos tipos de queixa.</p>
+                            <legend class="col-form-label">Tipo de queixa:</legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadios" id="typeRadios1"
+                                    value="option1" checked>
+                                <label class="form-check-label" for="typeRadios1">
+                                    Discriminação baseada em Gênero e/ou Sexualidade
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadios" id="typeRadios2"
+                                    value="option1">
+                                <label class="form-check-label" for="typeRadios2">
+                                    Assalto Sexual
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadios" id="typeRadios3"
+                                    value="option1">
+                                <label class="form-check-label" for="typeRadios3">
+                                    Assédio Sexual
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadios" id="typeRadios4"
+                                    value="option1">
+                                <label class="form-check-label" for="typeRadios4">
+                                    Assédio Sexual Cibernético
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <legend for="dia" class="col-form-label">Quando ocorreu (deixe sem preencher o que você não
+                                se lembrar):</legend>
+                            <input class="form-control" type="datetime-local" value=""
+                                id="example-datetime-local-input">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input list="inputComplaint" placeholder="Onde aconteceu?" class="form-control">
+                                <datalist id="inputComplaint">
+                                    <option>Na universidade</option>
+                                    <option>Fora da universidade</option>
+                                    <option>Não tem certeza</option>
+                                    <option>Prefere não dizer</option>
+                                    <option>Outro</option>
+                                </datalist>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" id="exactLocation" class="form-control"
+                                    placeholder="Local exato (caso se lembre)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="inputComplaint1" class="form-control"
+                                onchange="displayTextArea(this, 'Textarea1')">
+                                <option selected disabled>Alguém viu o ocorrido?</option>
+                                <option>Sim</option>
+                                <option>Não</option>
+                                <option>Não tem certeza</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="Textarea1" style="display: none;" rows="3"
+                                placeholder="Exemplos: quantas pessoas, o que viram ou ouviram, o relacionamento deles com você, onde podem estar de pé ou sentados, quão fisicamente perto de você estavam."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select id="inputComplaint2" class="form-control"
+                                onchange="displayTextArea(this, 'Textarea2')">
+                                <option selected disabled>Você interagiu com alguém logo antes ou após o episódio?
+                                </option>
+                                <option>Sim</option>
+                                <option>Não</option>
+                                <option>Não tem certeza</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="Textarea2" style="display: none;" rows="3"
+                                placeholder="Exemplos: quantas pessoas e o relacionamento delas com você."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select id="inputComplaint" class="form-control">
+                                <option selected disabled>Você contou a alguém sobre o episódio?</option>
+                                <option>Sim</option>
+                                <option>Não</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Author-->
+    <section class="white-section" id="form-2">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Autor do Ocorrido</h5>
+                <div class="card-body">
+                    <br>
+                    <form id="author">
+                        <div class="form-group">
+                            <select id="inputComplaint" class="form-control">
+                                <option selected disabled>Você sabe se o autor contou a alguém sobre o episódio?
+                                </option>
+                                <option>Sim</option>
+                                <option>Não</option>
+                                <option>Não tem certeza</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <p class="card-text">Havia outras pessoas com a(o) autor(a) da violência no momento do
+                                episódio ou diretamente antes ou depois?</p>
+                            <select id="inputComplaint" class="form-control">
+                                <option>Sim</option>
+                                <option>Não</option>
+                                <option>Não tem certeza</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="form-group" style="text-align: center;">
+                        <button type="button" class="btn btn-secondary" onclick="addAuthor()">
+                            Adicionar Novo Autor
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Consent-->
+    <section class="white-section" id="form-3">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Consentimento</h5>
+                <div class="card-body">
+                    <p class="card-text">Consentimento é a concordância em se engajar em atividade de natureza sexual
+                        dada, de forma clara, consciente e voluntária.
+                        <br><br>
+                        Ajude-nos a compreender mais sobre o conceito de consentimento, marcando as alternativas que se
+                        aplicam ao seu caso. Como todas as questões, não há problema em deixar essa pergunta em branco,
+                        especialmente se você ainda estiver processando o que aconteceu.</p><br>
+                    <form>
+                        <div class="form-group">
+
+                            <p>O que aconteceu comigo não foi bom porque:</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option1" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Eu não queria, mas não me perguntaram sobre isso
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option2" id="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    Eu não disse "sim" (ou uma palavra que significa "sim")
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option3" id="defaultCheck3">
+                                <label class="form-check-label" for="defaultCheck3">
+                                    Não consegui reagir quando começou a acontecer (porque aconteceu rapidamente, ou
+                                    fiquei em choque ou fiquei confusa(o) sobre o que estava acontecendo)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option4" id="defaultCheck4">
+                                <label class="form-check-label" for="defaultCheck4">
+                                    Eu dei pistas não verbais de que não queria (isso poderia incluir um olhar
+                                    angustiado, um empurrão, um movimento da cabeça etc.)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option5" id="defaultCheck5">
+                                <label class="form-check-label" for="defaultCheck5">
+                                    Eu disse não (ou uma palavra que significa "não")
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option6" id="defaultCheck6">
+                                <label class="form-check-label" for="defaultCheck6">
+                                    Não consegui consentir (por estar desacorda, inconsciente ou sob efeitos de alguma
+                                    substância).
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option7" id="defaultCheck7">
+                                <label class="form-check-label" for="defaultCheck7">
+                                    Realmente não me lembro do que aconteceu.
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option8" id="defaultCheck8">
+                                <label class="form-check-label" for="defaultCheck8">
+                                    Fui coagida(o) ou pressionado (exemplos: repetidamente incomodado repetidamente ou
+                                    solicitado por alguém que está em uma posição de poder sobre mim)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option9" id="defaultCheck9">
+                                <label class="form-check-label" for="defaultCheck9">
+                                    Eu estava com medo da minha segurança
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option10" id="defaultCheck10">
+                                <label class="form-check-label" for="defaultCheck10">
+                                    Eu tinha medo de outras consequências se não dissesse sim (como ser perseguida(o),
+                                    sofrer uma represália, ser humilhada(o), etc)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Complemente a resposta, caso queira."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <!-- Form Episode-->
+    <section class="white-section" id="form-4">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Episódio</h5>
+                <div class="card-body">
+                    <p class="card-text">Lamentamos que isso tenha acontecido com você e queremos tornar esse processo o
+                        mais confortável possível. Reserve um momento, se precisar, ou pule esta parte e volte mais
+                        tarde para terminar.</p>
+                    <form>
+                        <div class="form-group">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
+                                placeholder="O que aconteceu? Inclua tudo o que for capaz de lembrar sobre o que vivenciou nesse episódio."></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Submit -->
+    <div class="container-fluid" id="submit">
+
+        <div class="card">
+            <h5 class="card-header">Finalizar</h5>
+            <div class="card-body" style="text-align: center;">
+                <input class="btn btn-primary" type="submit" value="Enviar dados">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Evidences -->
+    <section class="colored-section" id="evidences">
+        <div class="container-fluid">
+            <h3>Sobre Evidências</h5>
+                <div class="card-body">
+                    <p class="card-text">Se você optar por denunciar o que aconteceu à universidade, a polícia ou a
+                        outra instância, poderão ser necessárias a apresentação evidências (eletrônicas e/ou físicas) do
+                        que aconteceu. Por isso, elencamos algumas dicas que podem ser úteis à você. </p>
+                    <p class="card-text">Evidências eletrônicas incluem:</p>
+                    <ul>
+                        <li>E-mails, fotos, vídeos</li>
+                        <li>Mensagens de texto</li>
+                        <li>Interações nas mídias sociais (Twitter, Facebook, Instagram etc.)</li>
+                    </ul>
+                    <br>
+                    <p class="card-text">Como preservar evidências eletrônicas?</p>
+                    <ul>
+                        <li>Salve cópias de evidências eletrônicas em uma unidade USB à qual apenas você tenha acesso,
+                            incluindo capturas de tela de qualquer comunicação ou interação eletrônica relevante.</li>
+                        <li>Não exclua nenhuma mensagem, mesmo se você tiver uma captura de tela.</li>
+                        <li>Faça capturas de tela de uma maneira que mostrem o fluxo da conversa (repetindo a última
+                            linha na parte superior da próxima captura de tela).</li>
+                    </ul>
+                    <br>
+                    <p class="card-text">Evidências físicas incluem:</p>
+                    <ul>
+                        <li>Roupas</li>
+                        <li>Lençóis</li>
+                        <li>Preservativos</li>
+                        <li>Qualquer evidência coletada como parte do exame forense ("kit de estupro")</li>
+                    </ul>
+                    <br>
+                    <p class="card-text">Como preservar evidências físicas?</p>
+                    <ul>
+                        <li>Coloque cada item de evidência física em potencial em seu próprio saco de papel (sacos
+                            plásticos podem eliminar DNA, por exemplo) e armazene em algum lugar que só você possa
+                            acessar, ou seja, fora dos espaços comuns.</li>
+                    </ul>
+                    <br>
+                    <p class="card-text">Se você não tem essas coisas, isso não significa que o que aconteceu é menos
+                        real.
+                        O mais importante, nesse momento, é que você conseguiu relatar esse episódio. Sabemos que isso
+                        pode ter sido muito difícil para você.
+                    </p>
+                    <p class="card-text">O SAVS está à sua disposição, caso necessite de apoio e orientações, em relação
+                        a este episódio. </p>
+                </div>
+        </div>
+    </section>
+
+
+    <!-- Call to Action -->
+    <section class="white-section" id="cta">
+
+        <div class="container-fluid" style="text-align: center; background-color: #ff4c68; color: #fff;">
+
+            <h3 class="big-heading">Você também pode acessar o SAVS através do aplicativo Unicamp Serviços</h3>
+            <button class="download-button btn btn-lg btn-dark" type="button"><i class="fab fa-apple"></i>
+                Download</button>
+            <button class="download-button btn btn-lg brn-light" type="button"><i class="fab fa-google-play"></i>
+                Download</button>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="white-section" id="footer">
+        <div class="container-fluid">
+            <p class="card-text">Compartilhe: </p>
+            <i class="social-icon fab fa-facebook-f"></i>
+            <i class="social-icon fab fa-whatsapp"></i>
+            <i class="social-icon fab fa-twitter"></i>
+            <i class="social-icon fab fa-instagram"></i>
+            <i class="social-icon fas fa-envelope"></i>
+            <p>© Copyright 2020 SAVS</p>
+        </div>
+    </footer>
+</body>
+
+</html>
