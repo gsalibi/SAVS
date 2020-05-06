@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-
 <html>
-    
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,20 +155,23 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <select id="inputInstitute" class="form-control" style="display: none;">
-                                    <option selected disabled>Instituto/Faculdade/Órgão...</option>
+                                <input id="inputInstitute" list="listInstitute" placeholder="Instituto/Faculdade/Órgão..." class="form-control"  style="display: none;">
+                                <datalist id="listInstitute">
                                     <option>Instituto 1</option>
                                     <option>Instituto 2</option>
                                     <option>Instituto 3</option>
-                                </select>
+                                    <option>Faculdade 1</option>
+                                    <option>Faculdade 2</option>
+                                </datalist>
                             </div>
                             <div class="form-group col-md-4">
-                                <select id="inputCourse" class="form-control" style="display: none;">
-                                    <option selected disabled>Curso...</option>
+                                <input id="inputCourse" list="listCourse" placeholder="Curso..." class="form-control"  style="display: none;">
+                                <datalist id="listCourse">
                                     <option>Curso 1</option>
                                     <option>Curso 2</option>
                                     <option>Curso 3</option>
-                                </select>
+                                </datalist>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -189,7 +191,7 @@
                 <div class="card-body">
                     <form name="form-1">
                         <div class="form-group">
-                            <p class="card-text">Colocar breve definição dos tipos de queixa.</p>
+                            <p class="card-text">** Será inserida breve definição dos tipos de queixa aqui **</p>
                             <legend class="col-form-label">Tipo de queixa:</legend>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="typeRadios" id="typeRadios1"
@@ -224,29 +226,24 @@
                         <div class="form-group">
                             <legend for="dia" class="col-form-label">Quando ocorreu (deixe sem preencher o que você não
                                 se lembrar):</legend>
-                            <input class="form-control" type="datetime-local" value=""
-                                id="example-datetime-local-input">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <input list="inputComplaint" placeholder="Onde aconteceu?" class="form-control">
-                                <datalist id="inputComplaint">
-                                    <option>Na universidade</option>
-                                    <option>Fora da universidade</option>
-                                    <option>Não tem certeza</option>
-                                    <option>Prefere não dizer</option>
-                                    <option>Outro</option>
-                                </datalist>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="text" id="exactLocation" class="form-control"
-                                    placeholder="Local exato (caso se lembre)">
-                            </div>
+                            <input class="form-control" type="datetime-local" value="" id="example-datetime-local-input">
                         </div>
                         <div class="form-group">
+                            <legend for="inputComplaint1" class="col-form-label">Onde ocorreu:</legend>
+                            <input list="inputComplaint" placeholder="O mais exato que conseguir se lembrar" class="form-control">
+                            <datalist id="inputComplaint">
+                                <option>Na universidade</option>
+                                <option>Fora da universidade</option>
+                                <option>Não tem certeza</option>
+                                <option>Prefere não dizer</option>
+                                <option>Outro</option>
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <legend for="inputComplaint1" class="col-form-label">Alguém viu o ocorrido?</legend>
                             <select id="inputComplaint1" class="form-control"
                                 onchange="displayTextArea(this, 'Textarea1')">
-                                <option selected disabled>Alguém viu o ocorrido?</option>
+                                <option selected disabled></option>
                                 <option>Sim</option>
                                 <option>Não</option>
                                 <option>Não tem certeza</option>
@@ -257,10 +254,10 @@
                                 placeholder="Exemplos: quantas pessoas, o que viram ou ouviram, o relacionamento deles com você, onde podem estar de pé ou sentados, quão fisicamente perto de você estavam."></textarea>
                         </div>
                         <div class="form-group">
+                            <legend for="inputComplaint2" class="col-form-label">Você interagiu com alguém logo antes ou após o episódio?</legend>
                             <select id="inputComplaint2" class="form-control"
                                 onchange="displayTextArea(this, 'Textarea2')">
-                                <option selected disabled>Você interagiu com alguém logo antes ou após o episódio?
-                                </option>
+                                <option selected disabled></option>
                                 <option>Sim</option>
                                 <option>Não</option>
                                 <option>Não tem certeza</option>
@@ -271,8 +268,9 @@
                                 placeholder="Exemplos: quantas pessoas e o relacionamento delas com você."></textarea>
                         </div>
                         <div class="form-group">
-                            <select id="inputComplaint" class="form-control">
-                                <option selected disabled>Você contou a alguém sobre o episódio?</option>
+                            <legend for="inputComplaint3" class="col-form-label">Você contou a mais alguém sobre o episódio?</legend>
+                            <select id="inputComplaint3" class="form-control">
+                                <option selected disabled></option>
                                 <option>Sim</option>
                                 <option>Não</option>
                             </select>
@@ -290,21 +288,20 @@
             <div class="card">
                 <h5 class="card-header">Autor do Ocorrido</h5>
                 <div class="card-body">
-                    <br>
                     <form id="author">
                         <div class="form-group">
-                            <select id="inputComplaint" class="form-control">
-                                <option selected disabled>Você sabe se o autor contou a alguém sobre o episódio?
-                                </option>
+                            <legend for="inputComplaint4" class="col-form-label">Você sabe se o autor contou a alguém sobre o episódio?</legend>
+                            <select id="inputComplaint4" class="form-control">
+                                <option selected disabled></option>
                                 <option>Sim</option>
                                 <option>Não</option>
                                 <option>Não tem certeza</option>
                             </select>
                         </div>
                         <div class="form-group ">
-                            <p class="card-text">Havia outras pessoas com a(o) autor(a) da violência no momento do
-                                episódio ou diretamente antes ou depois?</p>
-                            <select id="inputComplaint" class="form-control">
+                            <legend for="inputComplaint5" class="col-form-label">Havia outras pessoas com a(o) autor(a) da violência no momento do episódio ou diretamente antes ou depois?</legend>
+                            <select id="inputComplaint5" class="form-control">
+                                <option selected disabled></option>
                                 <option>Sim</option>
                                 <option>Não</option>
                                 <option>Não tem certeza</option>
