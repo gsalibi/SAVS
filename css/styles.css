@@ -12,6 +12,11 @@ ul {
     text-align: left;
 }
 
+select {
+    width: 100px;
+    text-overflow: ellipsis;
+}
+
 
 /* Containers */
 
