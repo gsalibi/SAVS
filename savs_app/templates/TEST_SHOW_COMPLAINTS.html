@@ -1,0 +1,298 @@
+{% extends "./base.html" %} {% block content %}
+
+
+<!-- {% load widget_tweaks %}
+<div class="container">
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        <div class="form-group">
+            {% if form.is_bound %}
+                {% if form.complainer_position.errors %}
+                    {% render_field form.complainer_position class="form-control is-invalid" %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                    {% render_field form.complainer_position class="form-control is-valid" %}
+                {% endif %}
+            {% else %}
+                {% render_field form.complainer_position class="form-control" %}
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div> -->
+
+
+<!-- <form method="POST"> {% csrf_token %}
+    {{ anonymous_form.as_p }}
+    <input type='submit' value="save" />
+</form> -->
+
+
+<!-- Anonymous Complaint -->
+<section class="white-section">
+    <div class="container-fluid">
+        <div class="card">
+            <h5 class="card-header">Queixas Anônimas</h5>
+            <div class="card-body">
+                <p class="card-text">
+                {% for complaint in anonymous_complaints %}
+                <h5>QUEIXA ANÔNIMA ID: {{ complaint.id }}</h5>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"><strong>COL</strong></th>
+                            <th scope="col"><strong>DATA</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>anonymous_position</td>
+                            <td>{{ complaint.anonymous_position }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_position_complement</td>
+                            <td>{{ complaint.anonymous_position_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_gender</td>
+                            <td>{{ complaint.anonymous_gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_gender_complement</td>
+                            <td>{{ complaint.anonymous_gender_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_connection_unicamp</td>
+                            <td>{{ complaint.anonymous_connection_unicamp }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_connection_unicamp_complement</td>
+                            <td>{{ complaint.anonymous_connection_unicamp_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_support_requested</td>
+                            <td>{{ complaint.anonymous_support_requested }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_support_requested_complement</td>
+                            <td>{{ complaint.anonymous_support_requested_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_why_anonymous</td>
+                            <td>{{ complaint.anonymous_why_anonymous }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_episode_date</td>
+                            <td>{{ complaint.anonymous_episode_date }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_episode_date_period</td>
+                            <td>{{ complaint.anonymous_episode_date_period }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_episode_location</td>
+                            <td>{{ complaint.anonymous_episode_location }}</td>
+                        </tr>
+                        <tr>
+                            <td>anonymous_episode_report</td>
+                            <td>{{ complaint.anonymous_episode_report }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Identified Complaint -->
+<section class="white-section">
+    <div class="container-fluid">
+        <div class="card">
+            <h5 class="card-header">Queixas Identificadas</h5>
+            <div class="card-body">
+                <p class="card-text">
+                    {% for complaint in identified_complaints %}
+                <h5>QUEIXA IDENTIFICADA ID: {{ complaint.id }}</h5>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"><strong>COL</strong></th>
+                            <th scope="col"><strong>DATA</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>identified_position</td>
+                            <td>{{ complaint.identified_position }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_position_complement</td>
+                            <td>{{ complaint.identified_position_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_gender</td>
+                            <td>{{ complaint.identified_gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_gender_complement</td>
+                            <td>{{ complaint.identified_gender_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_name</td>
+                            <td>{{ complaint.identified_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_cpf</td>
+                            <td>{{ complaint.identified_cpf }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_is_social_name</td>
+                            <td>{{ complaint.identified_is_social_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_zipcode</td>
+                            <td>{{ complaint.identified_zipcode }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_neighborhood</td>
+                            <td>{{ complaint.identified_neighborhood }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_city</td>
+                            <td>{{ complaint.identified_city }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_state</td>
+                            <td>{{ complaint.identified_state }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_address</td>
+                            <td>{{ complaint.identified_address }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_email</td>
+                            <td>{{ complaint.identified_email }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_telephone</td>
+                            <td>{{ complaint.identified_telephone }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_connection_unicamp</td>
+                            <td>{{ complaint.identified_connection_unicamp }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_connection_unicamp_complement</td>
+                            <td>{{ complaint.identified_connection_unicamp_complement }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_institute</td>
+                            <td>{{ complaint.identified_institute }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_ra</td>
+                            <td>{{ complaint.identified_ra }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_course</td>
+                            <td>{{ complaint.identified_course }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_episode_date</td>
+                            <td>{{ complaint.identified_episode_date }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_episode_date_period</td>
+                            <td>{{ complaint.identified_episode_date_period }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_episode_location</td>
+                            <td>{{ complaint.identified_episode_location }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_episode_report</td>
+                            <td>{{ complaint.identified_episode_report }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Envolved Person -->
+<section class="white-section">
+    <div class="container-fluid">
+        <div class="card">
+            <h5 class="card-header">Pessoas Envolvidas</h5>
+            <div class="card-body">
+                <p class="card-text">
+                    {% for person in envolved_people %}
+                <h5>PESSOA ID: {{ person.id }}</h5>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"><strong>COL</strong></th>
+                            <th scope="col"><strong>DATA</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>anonymous_complaint</td>
+                            <td>{{ person.anonymous_complaint }}</td>
+                        </tr>
+                        <tr>
+                            <td>identified_complaint</td>
+                            <td>{{ person.identified_complaint }}</td>
+                        </tr>
+                        <tr>
+                            <td>is_accused</td>
+                            <td>{{ person.is_accused }}</td>
+                        </tr>
+                        <tr>
+                            <td>person_name</td>
+                            <td>{{ person.person_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>person_connecton_with_unicamp</td>
+                            <td>{{ person.person_connecton_with_unicamp }}</td>
+                        </tr>
+                        <tr>
+                            <td>person_institute</td>
+                            <td>{{ person.person_institute }}</td>
+                        </tr>
+                        <tr>
+                            <td>person_relationship_with_victim</td>
+                            <td>{{ person.person_relationship_with_victim }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

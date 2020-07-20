@@ -1,0 +1,298 @@
+{% extends "./base.html" %} {% block content %}
+
+
+<form method="POST" id="generalForm" onsubmit="updateEnvolvedPersonForm()"> {% csrf_token %}
+
+
+    <id name="envolvedPersonForm" style="display: none;">
+        {{ envolved_form.as_p }}
+    </id>
+
+    <!-- Form type -->
+    <section class="white-section" id="form-type">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Apresentar Queixa</h5>
+                <div class="card-body">
+                    <p class="card-text">Selecione o tipo de denúncia abaixo: </p>
+                    <div id="type" class="form-group" style="text-align: center;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="type_complaint" id="inlineIdentified"
+                                value="identified" onchange="displayForms()">
+                            <label class="form-check-label" for="inlineIdentified">Identificada</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="type_complaint" id="inlineAnonymous"
+                                value="anonymous" onchange="displayForms()">
+                            <label class="form-check-label" for="inlineAnonymous">Anônima</label>
+                        </div>
+                    </div>
+                    <br>
+                    <p id="identified-text" style="display: none;">Estas informações serão úteis para que o SAVS
+                        entre
+                        em contato com você para dar prosseguimento aos procedimentos decorrentes de sua queixa.</p>
+                    <p id="anonymous-text" style="display: none;">Nesta modalidade você não precisa fornecer
+                        informações sobre a sua identidade. Por isso, as questões abaixo não são capazes de te
+                        identificar. Elas apenas nos ajudam a conhecer o perfil das pessoas que apresentam queixas
+                        anônimas e, a partir disso, aprimorar os nossos procedimentos e ferramentas.</p>
+
+                    <div id="commom-questions" style="display: none;">
+                        <div class="form-group">
+                            <legend for="id_anonymous_position" class="col-form-label">De que posição você está
+                                apresentando essa queixa?</legend>
+                            {{ anonymous_form.anonymous_position }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_position_complement }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="id_anonymous_gender" class="col-form-label">Como você define a sua
+                                identidade ou expressão de gênero?</legend>
+                            {{ anonymous_form.anonymous_gender }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_gender_complement }}
+                        </div>
+                    </div>
+
+                    <div id="anonymous-questions" style="display: none;">
+                        <div class="form-group">
+                            <legend for="id_anonymous_connection_unicamp" class="col-form-label">Qual o seu vínculo
+                                com a Unicamp?
+                            </legend>
+                            {{ anonymous_form.anonymous_connection_unicamp }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_connection_unicamp_complement }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="id_anonymous_support_requested" class="col-form-label">Você ou a pessoa em
+                                nome de quem você está se queixando, procurou alguma forma de apoio para lidar com este
+                                episódio?</legend>
+                            {{ anonymous_form.anonymous_support_requested }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_support_requested_complement }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="id_anonymous_why_anonymous" class="col-form-label">Por que você optou por
+                                apresentar uma queixa anônima?
+                            </legend>
+                            {{ anonymous_form.anonymous_why_anonymous }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_why_anonymous_complement }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Personal Infos-->
+    <section class="white-section" id="form-identified">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Informações Pessoais</h5>
+                <div class="card-body">
+                    <br>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            {{ identified_form.identified_name }}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ identified_form.identified_cpf }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            {{ identified_form.identified_is_social_name }}
+                            <label class="form-check-label" for="id_identified_is_social_name"> Nome Social </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            {{ identified_form.identified_zipcode }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" id="neighborhood" class="form-control" placeholder="Bairro" disabled>
+                            {{ identified_form.identified_neighborhood }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" id="city" class="form-control" placeholder="Endereço" disabled>
+                            {{ identified_form.identified_city }}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" id="state" class="form-control" placeholder="Endereço" disabled>
+                            {{ identified_form.identified_state }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <input type="text" id="address" class="form-control" placeholder="Endereço" disabled>
+                            {{ identified_form.identified_address }}
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ identified_form.identified_address_number }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ identified_form.identified_email }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ identified_form.identified_telephone }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ identified_form.identified_connection_unicamp }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ identified_form.identified_institute }}
+                            <datalist id="listInstitute">
+                                <option>Instituto 1</option>
+                                <option>Instituto 2</option>
+                                <option>Instituto 3</option>
+                                <option>Faculdade 1</option>
+                                <option>Faculdade 2</option>
+                            </datalist>
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ identified_form.identified_ra }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ identified_form.identified_course }}
+                            <datalist id="listCourse">
+                                <option>Curso 1</option>
+                                <option>Curso 2</option>
+                                <option>Curso 3</option>
+                            </datalist>
+                        </div>
+                        <div class="form-group col-md-12">
+                            {{ identified_form.identified_connection_unicamp_complement }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Form Complaint-->
+    <section class="white-section" id="form-1">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Sobre o Episódio</h5>
+                <div class="card-body">
+                    <div class="form-row">
+                        <legend for="id_episode_date" class="col-form-label">Quando aconteceu?</legend>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date_complement }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <legend for="id_episode_date_period" class="col-form-label">Em qual período do dia
+                            aconteceu?
+                        </legend>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date_period }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date_period_complement }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <legend for="id_episode_location" class="col-form-label">Onde aconteceu?</legend>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_location }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_location_complement }}
+                        </div>
+                    </div>
+
+                    <p class="card-text">Lamentamos que isso tenha acontecido com você e queremos tornar esse
+                        processo o mais confortável possível. Reserve um momento, se precisar, ou pule esta parte e
+                        volte mais tarde para terminar.</p>
+                    <div class="form-group">
+                        {{ anonymous_form.anonymous_episode_report }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Envolved People -->
+    <input type="hidden" name="total_accused" id="total_accused" value=1>
+    <input type="hidden" name="total_witness" id="total_witness" value=0>
+
+    <section class="white-section" id="form-2">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Pessoas Envolvidas</h5>
+                <div class="card-body">
+                    <div id="acusado"></div>
+                    <script>addPerson('acusado')</script>
+                    <div class="form-group" style="text-align: center;">
+                        <button type="button" class="btn btn-secondary" onclick="addPerson('acusado')">
+                            Adicionar Novo Acusado
+                        </button>
+                    </div>
+
+                    <br>
+                    <p>Caso possua, adicione informações sobre testemunhas abaixo:</p>
+                    <div id="testemunha"></div>
+                    <div class="form-group" style="text-align: center;">
+                        <button type="button" class="btn btn-secondary" onclick="addPerson('testemunha')">
+                            Adicionar Nova Testemunha
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Submit -->
+    <section class="white-section" id="submit">
+        <div class="container-fluid">
+            <div class="card">
+                <h5 class="card-header">Finalizar</h5>
+                <div class="card-body" style="text-align: center;">
+
+                    <div style="text-align: left;">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option1" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Declaro que li e compreendi o protocolo para recebimentos de queixas e denúncias
+                                    da Política de Combate à Violência Sexual e à Discriminação baseada em Gênero e/ou
+                                    Sexualidade da Unicamp disponível em:
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="option2" id="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2">
+                                    Concordo que Unicamp conduza a minha queixa de acordo com os procedimentos
+                                    definidos nesta Política.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btn-primary" id="submitEnvolvedPerson" type='submit' value="Enviar dados" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+</form>
+{% endblock %}
