@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [ master ]
+
+name: Deploy to Amazon EC2
+
+jobs:
+  build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SAVS_HOST }}
+          username: ${{ secrets.SAVS_USERNAME }}
+          key: ${{ secrets.SAVS_KEY }}
+          port: ${{ secrets.SAVS_PORT }}
+          script: |
+            source env/bin/activate
+            cd savs/
+            git pull
+            python manage.py makemigrations
+            python manage.py migrate
+            python manage.py collectstatic --noinput
+            sudo service apache2 restart
