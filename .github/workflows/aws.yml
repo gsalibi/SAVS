@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [ master ]
+
+name: Deploy to Amazon EC2
+
+jobs:
+  build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+      - name: executing remote ssh commands using ssh key
+        env:
+          SAVS_HOST: ${{ secrets.SAVS_HOST }}
+          SAVS_KEY: ${{ secrets.SAVS_KEY }}
+        run: |
+          echo $SAVS_KEY > savs_key.pem
+          chmod 400 savs_key.pem
+          ssh -i "savs_key.pem" $SAVS_HOST
+          source env/bin/activate
+          cd savs/
+          git pull
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py collectstatic --noinput
+          sudo service apache2 restart
