@@ -9,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.mt-0 {
+    text-align: left;
+}
+
 ul {
     text-align: left;
 }
@@ -142,3 +146,10 @@ section:before {
     max-width: 300px;
     padding-top: 30px;
   }
+
+.media {
+    margin-left: 35%;
+    margin-right: 10%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
