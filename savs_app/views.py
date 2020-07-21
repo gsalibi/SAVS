@@ -6,6 +6,8 @@ from .forms import AnonymousComplaintForm, IdentifiedComplaintForm, EnvolvedPers
 def index_view(request):
     return render(request, "base.html")
 
+def home_view(request):
+    return render(request, "home.html")
 
 def sobre_view(request):
     return render(request, "sobre.html")
