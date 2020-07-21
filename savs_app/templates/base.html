@@ -15,6 +15,7 @@
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/bootstrap_purple.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <!-- Font Awesome -->
@@ -48,8 +49,8 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:sobre' %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Quem Somos </a>
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:sobre' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Quem Somos </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#missao">Missão</a>
                         <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#equipe">Equipe</a>
@@ -57,41 +58,50 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:igualdade' %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Igualdade de Gênero </a>
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:igualdade' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Igualdade de
+                        Gênero </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#conceitos">Conceitos Fundamentais</a>
-                        <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#política_de_Combate">Combate à Discriminação</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#conceitos">Conceitos
+                            Fundamentais</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#política_de_Combate">Combate à
+                            Discriminação</a>
                         <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#relatorios">Relatórios</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:violencia-sexual' %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  Violência Sexual </a>
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:violencia-sexual' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Violência
+                        Sexual </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#conceitos">Conceitos Fundamentais</a>
-                        <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#politica">Combate à Violência Sexual</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#conceitos">Conceitos
+                            Fundamentais</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#politica">Combate à
+                            Violência Sexual</a>
                         <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#relatorios">Relatórios</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:savs' %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  SAVS </a>
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:savs' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SAVS </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:savs' %}#o_que_e">O que é o SAVS?</a>
-                        <a class="dropdown-item" href="{% url 'savs_app:savs' %}#protocolo">Protocolo de Recebimento de Queixas</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:savs' %}#protocolo">Protocolo de Recebimento de
+                            Queixas</a>
                         <a class="dropdown-item" href="{% url 'savs_app:savs' %}#perguntas">Perguntas Frequentes</a>
-                        <a class="dropdown-item" href="{% url 'savs_app:queixa' %}"><strong>APRESENTAR QUEIXA</strong></a>
+                        <a class="dropdown-item" href="{% url 'savs_app:queixa' %}"><strong>APRESENTAR
+                                QUEIXA</strong></a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:participe' %}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Participe </a>
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:participe' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Participe </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:participe' %}#eventos">Eventos</a>
                         <a class="dropdown-item" href="{% url 'savs_app:participe' %}#treinamentos">Treinamentos</a>
                         <a class="dropdown-item" href="{% url 'savs_app:participe' %}#noticias">Notícias</a>
-                        <a class="dropdown-item" href="{% url 'savs_app:participe' %}#informacoes">Receber Informações</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:participe' %}#informacoes">Receber
+                            Informações</a>
                     </div>
                 </li>
 
@@ -101,7 +111,7 @@
 
     {% block content %} {% endblock %}
     <!-- Footer -->
-    <footer class="white-section" id="footer">
+    <footer id="footer">
         <div class="container-fluid">
             <p class="card-text">Compartilhe: </p>
             <i class="social-icon fab fa-facebook-f"></i>

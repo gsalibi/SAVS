@@ -9,44 +9,22 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.mt-0 {
-    text-align: left;
+strong {
+    font-family: "Montserrat-Bold";
 }
 
-ul {
-    text-align: left;
+section:before {
+    height: 20px;
+    content: "";
+    display:block;
 }
-
-select {
-    width: 100px;
-    text-overflow: ellipsis;
-}
-
 
 /* Containers */
-
 .container-fluid {
     padding: 4% 10%;
 }
 
-/* Sections */
-
-.colored-section {
-    background-color: #6f42c1;
-    color: #fff;
-}
-
-.white-section {
-    color: #6c757d;
-    background-color: #fff;
-    adding-top: 100px;
-}
-
-.card-header {
-    color: #343a40;
-}
-
-
+/* Navbar */
 .nav-item {
     padding: 0 8px;
 }
@@ -57,85 +35,25 @@ select {
 
 .navbar { 
     padding: 0% 10% 0%;
-    background-color: #6f42c1;
-    color: #fff;
-
+    background-color: #7F0FFF;
 }
 
-/* Title Section */
-#title .container-fluid {
-    padding: 0% 15% 0%;
-}
-
-/* Title Image */
-
-.title-image {
-    width: 60%;
-    transform: rotate(25deg);
-    position: absolute;
-    right: 30%;
-}
-
-/* Features Section */
-
-#features {
-    position: relative;
-}
-
-.feature-title {
-    font-size: 1.5rem;
-}
-
-.feature-box {
-    padding: 4.5%;
-}
-
-.icon {
-    color: #ef8172;
-    margin-bottom: 1rem;
-}
-
-.icon:hover {
-    color: #ff4c68;
-}
 
 /* Footer Section */
-
 .social-icon {
     margin: 20px 10px;
 }
 
 #footer {
-    background-color: #6f42c1; /* New color*/
+    background-color: #7F0FFF; /* New color*/
     text-align: center;
     color:#FFF; /* OLD: #343a40*/
 }
 
-#form-identified, #form-1, #form-2, #form-3, #form-4, #submit {
+/* Forms */
+#form-identified, #form-1, #form-2, #submit {
     display: none; 
 } 
-
-#evidences {
-    color: #fff;
-}
-
-
-
-@media (max-width: 1028px) {
-    #title {
-        text-align: center;
-    }
-    .title-image {
-        position: static;
-        transform: rotate(0);
-    }
-}
-
-section:before {
-    height: 20px;
-    content: "";
-    display:block;
-}
 
 
 .center_img {
@@ -152,4 +70,8 @@ section:before {
     margin-right: 10%;
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+.mt-0 {
+    text-align: left;
 }
