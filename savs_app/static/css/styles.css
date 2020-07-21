@@ -132,3 +132,13 @@ section:before {
     content: "";
     display:block;
 }
+
+
+.center_img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 300px;
+    padding-top: 30px;
+  }
