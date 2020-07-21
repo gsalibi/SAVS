@@ -1,6 +1,7 @@
 body {
     font-family: "Montserrat";
     text-align: justify;
+    padding: 70px 0% 0%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,19 +41,20 @@ select {
     color: #343a40;
 }
 
-.navbar-brand {
-    font-family: "Ubuntu";
-    font-size: 4rem;
-    font-weight: bold;
-}
 
 .nav-item {
-    padding: 0 18px;
+    padding: 0 8px;
 }
 
 .nav-link {
-    font-size: 1.2rem;
-    font-family: "Montserrat-Light";
+    font-size: 1rem;
+}
+
+.navbar { 
+    padding: 0% 15% 0%;
+    background-color: #6f42c1;
+    color: #fff;
+
 }
 
 /* Buttons */
@@ -114,7 +116,7 @@ select {
 #footer {
     background-color: #6f42c1; /* New color*/
     text-align: center;
-    color:#000; /* OLD: #343a40*/
+    color:#FFF; /* OLD: #343a40*/
 }
 
 #form-identified, #form-1, #form-2, #form-3, #form-4, #submit {

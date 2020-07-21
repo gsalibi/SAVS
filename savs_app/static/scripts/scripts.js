@@ -253,10 +253,6 @@ const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-// sleep time expects milliseconds
-function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
 
 function updateEnvolvedPersonForm() {
     document.getElementById('id_is_accused').checked = true;
@@ -265,11 +261,4 @@ function updateEnvolvedPersonForm() {
     document.getElementById('id_person_institute').value = document.getElementById('acusado1TextareaC').value;
     document.getElementById('id_person_relationship_with_victim').value = document.getElementById('acusado1TextareaD').value;
     document.getElementById('id_person_information_complement').value = document.getElementById('acusado1TextareaE').value;
-}
-
-
-function submitForms() {
-    updateEnvolvedPersonForm()
-    document.getElementById("submitAnonymousForm").click();
-    document.getElementById("submitEnvolvedPerson").click();
 }
