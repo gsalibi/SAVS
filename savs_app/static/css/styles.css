@@ -35,6 +35,7 @@ select {
 .white-section {
     color: #6c757d;
     background-color: #fff;
+    adding-top: 100px;
 }
 
 .card-header {
@@ -47,30 +48,17 @@ select {
 }
 
 .nav-link {
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .navbar { 
-    padding: 0% 15% 0%;
+    padding: 0% 10% 0%;
     background-color: #6f42c1;
     color: #fff;
 
-}
-
-/* Buttons */
-
-.download-button {
-    margin: 5% 3% 5% 0;
 }
 
 /* Title Section */
-
-#title {
-    background-color: #6f42c1;
-    color: #fff;
-    text-align: left;
-}
-
 #title .container-fluid {
     padding: 0% 15% 0%;
 }
@@ -137,4 +125,10 @@ select {
         position: static;
         transform: rotate(0);
     }
+}
+
+section:before {
+    height: 20px;
+    content: "";
+    display:block;
 }
