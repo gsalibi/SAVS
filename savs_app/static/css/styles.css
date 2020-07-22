@@ -4,14 +4,9 @@ body {
     padding: 70px 0% 0%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Montserrat";
-    text-align: left;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat-Bold";
+    text-align: center;
 }
 
 strong {
@@ -26,7 +21,6 @@ section:before {
 
 
 /* Containers */
-
 .container-fluid {
     padding: 4% 10%;
 }
@@ -37,7 +31,6 @@ h1 {
 
 
 /* Navbar */
-
 .nav-item {
     padding: 0 8px;
 }
@@ -50,6 +43,7 @@ h1 {
     padding: 0% 10% 0%;
     background-color: #7F0FFF;
 }
+
 .active {
     background-color: #5c0eb4;
     border-radius: 20pt;
@@ -58,7 +52,6 @@ h1 {
 
 
 /* Footer Section */
-
 .social-icon {
     margin: 20px 10px;
 }
@@ -88,19 +81,13 @@ h1 {
 
 #footer {
     background-color: #7F0FFF;
-    /* New color*/
     text-align: center;
     color: #FFF;
-    /* OLD: #343a40*/
 }
 
 
 /* Forms */
-
-#form-identified,
-#form-1,
-#form-2,
-#submit {
+#form-identified, #form-1, #form-2, #submit {
     display: none;
 }
 
@@ -114,7 +101,7 @@ h1 {
 }
 
 .media {
-    margin-left: 3%;
+    margin-left: 10%;
     margin-right: 10%;
     padding-top: 30px;
     padding-bottom: 30px;

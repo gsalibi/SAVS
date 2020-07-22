@@ -127,7 +127,6 @@ function addPerson(actorType) {
         ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone celular, você a viu antes, como a conhece, quaisquer características físicas (cor do cabelo, marcas identificáveis, tatuagens, roupas, marcas de nascença) ou qualquer coisa que você se lembre dela."]
     ]
 
-    const p = document.createElement("p");
     const node = document.createTextNode(capitalize(actorType) + complement + actorNumber[index] + ":");
     const br = document.createElement("br");
     const parent = document.createElement("div");
