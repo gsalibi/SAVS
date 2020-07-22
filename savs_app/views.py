@@ -38,11 +38,11 @@ def queixa_view(request):
             if envolved_form.is_valid():
                 new_envolved = envolved_form.save(commit=False)
                 new_envolved.is_accused = True
-                new_envolved.person_name = request.POST.get("acusado" + str(i) + "A")
-                new_envolved.person_connecton_with_unicamp = request.POST.get("acusado" + str(i) + "B")
-                new_envolved.person_institute = request.POST.get("acusado" + str(i) + "C")
-                new_envolved.person_relationship_with_victim = request.POST.get("acusado" + str(i) + "D")
-                new_envolved.person_information_complement = request.POST.get("acusado" + str(i) + "E")
+                new_envolved.person_name = request.POST.get("autor" + str(i) + "A")
+                new_envolved.person_connecton_with_unicamp = request.POST.get("autor" + str(i) + "B")
+                new_envolved.person_institute = request.POST.get("autor" + str(i) + "C")
+                new_envolved.person_relationship_with_victim = request.POST.get("autor" + str(i) + "D")
+                new_envolved.person_information_complement = request.POST.get("autor" + str(i) + "E")
                 if is_identified:
                     new_envolved.identified_complaint = new_complaint
                 else:

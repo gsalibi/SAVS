@@ -37,11 +37,11 @@ class AnonymousComplaintForm(forms.ModelForm):
             'anonymous_why_anonymous': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4], 'id_anonymous_why_anonymous_complement')"}),
             'anonymous_why_anonymous_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Qual", "style": "display: none;"}),
             'anonymous_episode_date': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [3], 'id_anonymous_episode_date_complement')"}),
-            'anonymous_episode_date_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Data", "style": "display: none;"}),
+            'anonymous_episode_date_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "dd/mm/aaaa", "style": "display: none;"}),
             'anonymous_episode_date_period': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4], 'id_anonymous_episode_date_period_complement')"}),
-            'anonymous_episode_date_period_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Horário", "style": "display: none;"}),
+            'anonymous_episode_date_period_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "hh:mm", "style": "display: none;"}),
             'anonymous_episode_location': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4,5], 'id_anonymous_episode_location_complement')"}),
-            'anonymous_episode_location_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Local", "style": "display: none;"}),
+            'anonymous_episode_location_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Onde, exatamente", "style": "display: none;"}),
             'anonymous_episode_report': forms.Textarea(attrs={"class": "form-control", "placeholder": "O que aconteceu? Inclua tudo o que for capaz de lembrar sobre o que vivenciou nesse episódio.", "rows": "6"}),
         }
 
@@ -90,11 +90,11 @@ class IdentifiedComplaintForm(forms.ModelForm):
             'identified_why_anonymous': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4], 'id_identified_why_identified_complement')"}),
             'identified_why_identified_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Qual", "style": "display: none;"}),
             'identified_episode_date': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [3], 'id_identified_episode_date_complement')"}),
-            'identified_episode_date_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Data", "style": "display: none;"}),
+            'identified_episode_date_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "dd/mm/aaaa", "style": "display: none;"}),
             'identified_episode_date_period': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4], 'id_identified_episode_date_period_complement')"}),
-            'identified_episode_date_period_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Horário", "style": "display: none;"}),
+            'identified_episode_date_period_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "hh:mm", "style": "display: none;"}),
             'identified_episode_location': forms.Select(attrs={"class": "form-control", "onchange": "displayOpenField(this, [4,5], 'id_identified_episode_location_complement')"}),
-            'identified_episode_location_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Local", "style": "display: none;"}),
+            'identified_episode_location_complement': forms.TextInput(attrs={"class": "form-control", "placeholder": "Onde, exatamente", "style": "display: none;"}),
             'identified_episode_report': forms.Textarea(attrs={"class": "form-control", "placeholder": "O que aconteceu? Inclua tudo o que for capaz de lembrar sobre o que vivenciou nesse episódio.", "rows": "6"}),
             'identified_name': forms.TextInput(attrs={"class": "form-control", "placeholder": "Nome Completo"}),
             'identified_cpf': forms.TextInput(attrs={"class": "form-control", "placeholder": "CPF"}),
@@ -121,8 +121,11 @@ class EnvolvedPersonForm(forms.ModelForm):
         fields = [
             'is_accused',
             'person_name',
-            'person_connecton_with_unicamp',
+            'person_connecton_unicamp',
+            'person_connecton_unicamp_complement',
             'person_institute',
-            'person_relationship_with_victim',
+            'person_ra',
+            'person_course',
+            'person_relationship_victim',
             'person_information_complement'
         ]

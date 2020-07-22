@@ -28,7 +28,7 @@ COMPLAINER_CONNECTION_UNICAMP = (
     ("Terceirizada(o)", "Terceirizada(o)"),
     ("Docente", "Docente"),
     ("Outro", "Outro"),
-    ("Não tenho vínculo com a universidade", "Não tenho vínculo com a universidade"),
+    ("Sem vínculo com a universidade", "Sem vínculo com a universidade"),
 )
 
 COMPLAINER_WHY_ANONYMOUS = (
@@ -53,7 +53,7 @@ EPISODE_PERIOD = (
     ("Noite", "Noite"),
     ("Madrugada", "Madrugada"),
     ("Eu sei o horário exato", "Eu sei o horário exato"),
-    ("Não sei", "Não sei"),
+    ("Não sei/Não se aplica", "Não sei/Não se aplica"),
 )
 
 EPISODE_LOCATION = (
@@ -61,9 +61,21 @@ EPISODE_LOCATION = (
     ("Na minha casa", "Na minha casa"),
     ("Em uma festa", "Em uma festa"),
     ("Em um bar", "Em um bar"),
-    ("Foi online, por meio de:", "Foi online, por meio de:"),
-    ("Outro:", "Outro:"),
+    ("Foi online", "Foi online"),
+    ("Outro", "Outro"),
     ("Não sei", "Não sei"),
+)
+
+
+PERSON_RELATIONSHIP_VICTIM = (
+    ("Não possui nenhum vínculo", "Não possui nenhum vínculo"),
+    ("Chefia", "Chefia"),
+    ("Colega de trabalho", "Colega de trabalho"),
+    ("Orientador(a)", "Orientador(a)"),
+    ("Colega de turma", "Colega de turma"),
+    ("Amigo(a) pessoal", "Amigo(a) pessoal"),
+    ("Ex-namorado(a), cônjuge(a), companheiro(a)", "Ex-namorado(a), cônjuge(a), companheiro(a)"),
+    ("Outro", "Outro"),
 )
 
 class AnonymousComplaint(models.Model):
@@ -123,7 +135,10 @@ class EnvolvedPerson(models.Model):
         IdentifiedComplaint, on_delete=models.CASCADE, null=True, blank=True)
     is_accused = models.BooleanField(default=None)
     person_name = models.TextField(null=True, blank=True)
-    person_connecton_with_unicamp = models.TextField(null=True, blank=True)
+    person_connecton_unicamp = models.TextField(choices=COMPLAINER_CONNECTION_UNICAMP, default=None)
+    person_connecton_unicamp_complement = models.TextField(null=True, blank=True)
     person_institute = models.TextField(null=True, blank=True)
-    person_relationship_with_victim = models.TextField(null=True, blank=True)
+    person_ra = models.TextField(null=True, blank=True)
+    person_course = models.TextField(null=True, blank=True)
+    person_relationship_victim = models.TextField(choices=PERSON_RELATIONSHIP_VICTIM, default=None)
     person_information_complement = models.TextField(null=True, blank=True)

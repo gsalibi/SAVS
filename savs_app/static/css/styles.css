@@ -37,6 +37,11 @@ section:before {
     padding: 0% 10% 0%;
     background-color: #7F0FFF;
 }
+.active {
+    background-color: #5c0eb4;
+    border-radius: 20pt;
+
+}
 
 
 /* Footer Section */

@@ -15,7 +15,6 @@ function displayForms() {
         updateIDs(false)
         updateRequired(false)
     }
-    document.getElementById("commom-questions").style.display = "block";
     document.getElementById("form-1").style.display = "block";
     document.getElementById("form-2").style.display = "block";
     document.getElementById("submit").style.display = "block";
@@ -24,10 +23,6 @@ function displayForms() {
 
 function updateIDs(isIdentified) {
     if (isIdentified) {
-        document.getElementById("id_anonymous_position").name = "identified_position"
-        document.getElementById("id_anonymous_position_complement").name = "identified_position_complement"
-        document.getElementById("id_anonymous_gender").name = "identified_gender"
-        document.getElementById("id_anonymous_gender_complement").name = "identified_gender_complement"
         document.getElementById("id_anonymous_connection_unicamp").name = "identified_connection_unicamp"
         document.getElementById("id_anonymous_connection_unicamp_complement").name = "identified_connection_unicamp_complement"
         document.getElementById("id_anonymous_episode_date").name = "identified_episode_date"
@@ -38,10 +33,6 @@ function updateIDs(isIdentified) {
         document.getElementById("id_anonymous_episode_location_complement").name = "identified_episode_location_complement"
         document.getElementById("id_anonymous_episode_report").name = "identified_episode_report"  
     } else {
-        document.getElementById("id_anonymous_position").name = "anonymous_position"
-        document.getElementById("id_anonymous_position_complement").name = "anonymous_position_complement"
-        document.getElementById("id_anonymous_gender").name = "anonymous_gender"
-        document.getElementById("id_anonymous_gender_complement").name = "anonymous_gender_complement"
         document.getElementById("id_anonymous_connection_unicamp").name = "anonymous_connection_unicamp"
         document.getElementById("id_anonymous_connection_unicamp_complement").name = "anonymous_connection_unicamp_complement"
         document.getElementById("id_anonymous_episode_date").name = "anonymous_episode_date"
@@ -81,12 +72,6 @@ function displayUniversityInfos() {
         document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
         document.getElementById("id_identified_course").style.display = "block";
         document.getElementById("id_identified_ra").style.display = "block";
-        document.getElementById("id_identified_institute").style.display = "block";
-    }
-    else if (selected === "Terceirizada(o)") {
-        document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
-        document.getElementById("id_identified_course").style.display = "none";
-        document.getElementById("id_identified_ra").style.display = "none";
         document.getElementById("id_identified_institute").style.display = "block";
     } else if (selected === "Docente") {
         document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
@@ -133,7 +118,8 @@ actorNumber = [1, 1];
 total_accused = 1
 total_witness = 0
 function addPerson(actorType) {
-    index = (actorType == "acusado") ? 0 : 1
+    index = (actorType == "autor") ? 0 : 1
+    complement = (actorType == "autor") ? "(a) " : " "
     const placeholders = [
         ["A", "Qual o nome dessa pessoa? (caso saiba)"],
         ["B", "Qual o vínculo dessa pessoa com a universidade? (caso saiba)"],
@@ -142,7 +128,7 @@ function addPerson(actorType) {
         ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone celular, você a viu antes, como a conhece, quaisquer características físicas (cor do cabelo, marcas identificáveis, tatuagens, roupas, marcas de nascença) ou qualquer coisa que você se lembre dela."]]
 
     const p = document.createElement("p");
-    const node = document.createTextNode(capitalize(actorType) + " " + actorNumber[index] + ":");
+    const node = document.createTextNode(capitalize(actorType) + complement + actorNumber[index] + ":");
     const br = document.createElement("br");
     p.appendChild(node);
     document.getElementById(actorType).appendChild(br);
@@ -154,7 +140,7 @@ function addPerson(actorType) {
         group.className = "form-group";
         element.className = "form-control";
         element.name = actorType + actorNumber[index] + placeholder[0];
-        element.id = actorType + actorNumber[index] + "Textarea" + placeholder[0];
+        element.id = actorType + actorNumber[index] + placeholder[0];
         element.rows = "3";
         element.placeholder = placeholder[1];
         group.appendChild(element);
@@ -251,14 +237,4 @@ function cepSearch(valor) {
 const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
-}
-
-
-function updateEnvolvedPersonForm() {
-    document.getElementById('id_is_accused').checked = true;
-    document.getElementById('id_person_name').value = document.getElementById('acusado1TextareaA').value;
-    document.getElementById('id_person_connecton_with_unicamp').value = document.getElementById('acusado1TextareaB').value;
-    document.getElementById('id_person_institute').value = document.getElementById('acusado1TextareaC').value;
-    document.getElementById('id_person_relationship_with_victim').value = document.getElementById('acusado1TextareaD').value;
-    document.getElementById('id_person_information_complement').value = document.getElementById('acusado1TextareaE').value;
 }
