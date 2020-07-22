@@ -6,8 +6,7 @@ function displayForms() {
         document.getElementById("anonymous-questions").style.display = "none";
         updateIDs(true)
         updateRequired(true)
-    }
-    else {
+    } else {
         document.getElementById("form-identified").style.display = "none";
         document.getElementById("identified-text").style.display = "none";
         document.getElementById("anonymous-text").style.display = "block";
@@ -36,7 +35,7 @@ function updateIDs(isIdentified) {
         document.getElementById("id_anonymous_episode_date_period_complement").name = "identified_episode_date_period_complement"
         document.getElementById("id_anonymous_episode_location").name = "identified_episode_location"
         document.getElementById("id_anonymous_episode_location_complement").name = "identified_episode_location_complement"
-        document.getElementById("id_anonymous_episode_report").name = "identified_episode_report"  
+        document.getElementById("id_anonymous_episode_report").name = "identified_episode_report"
     } else {
         document.getElementById("id_anonymous_position").name = "anonymous_position"
         document.getElementById("id_anonymous_position_complement").name = "anonymous_position_complement"
@@ -50,7 +49,7 @@ function updateIDs(isIdentified) {
         document.getElementById("id_anonymous_episode_date_period_complement").name = "anonymous_episode_date_period_complement"
         document.getElementById("id_anonymous_episode_location").name = "anonymous_episode_location"
         document.getElementById("id_anonymous_episode_location_complement").name = "anonymous_episode_location_complement"
-        document.getElementById("id_anonymous_episode_report").name = "anonymous_episode_report" 
+        document.getElementById("id_anonymous_episode_report").name = "anonymous_episode_report"
     }
 
 }
@@ -77,13 +76,12 @@ function updateRequired(isIdentified) {
 function displayUniversityInfos() {
     var selected = document.getElementById("id_identified_connection_unicamp").value;
 
-    if (selected === "Aluna(o) de graduação" || selected ===  "Aluna(o) de pós-graduação"){ 
+    if (selected === "Aluna(o) de graduação" || selected === "Aluna(o) de pós-graduação") {
         document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
         document.getElementById("id_identified_course").style.display = "block";
         document.getElementById("id_identified_ra").style.display = "block";
         document.getElementById("id_identified_institute").style.display = "block";
-    }
-    else if (selected === "Terceirizada(o)") {
+    } else if (selected === "Terceirizada(o)") {
         document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
         document.getElementById("id_identified_course").style.display = "none";
         document.getElementById("id_identified_ra").style.display = "none";
@@ -113,8 +111,7 @@ function displayOpenField(element, options, fieldID) {
             document.getElementById(fieldID).style.display = "block";
             document.getElementById(fieldID).required = true;
             break;
-        }
-        else {
+        } else {
             document.getElementById(fieldID).style.display = "none";
             document.getElementById(fieldID).required = false;
         }
@@ -132,6 +129,7 @@ function displayOpenFieldChecked(element, fieldID) {
 actorNumber = [1, 1];
 total_accused = 1
 total_witness = 0
+
 function addPerson(actorType) {
     index = (actorType == "acusado") ? 0 : 1
     const placeholders = [
@@ -139,14 +137,27 @@ function addPerson(actorType) {
         ["B", "Qual o vínculo dessa pessoa com a universidade? (caso saiba)"],
         ["C", "Qual o Instituto/Faculdade/Órgão onde a pessoa estuda ou trabalha (caso saiba)"],
         ["D", "Qual tipo vínculo você possui ou possuía com essa pessoa? (caso se aplique)"],
-        ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone celular, você a viu antes, como a conhece, quaisquer características físicas (cor do cabelo, marcas identificáveis, tatuagens, roupas, marcas de nascença) ou qualquer coisa que você se lembre dela."]]
+        ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone celular, você a viu antes, como a conhece, quaisquer características físicas (cor do cabelo, marcas identificáveis, tatuagens, roupas, marcas de nascença) ou qualquer coisa que você se lembre dela."]
+    ]
 
-    const p = document.createElement("p");
     const node = document.createTextNode(capitalize(actorType) + " " + actorNumber[index] + ":");
     const br = document.createElement("br");
-    p.appendChild(node);
+    const parent = document.createElement("div");
+    const button = document.createElement("button");
+    name = (index == 0) ? "acusado" + (actorNumber[index] + 1) : "testemunha" + (actorNumber[index] + 1);
+
+    parent.setAttribute("id", name);
+
+    button.setAttribute("class", "bttn");
+    button.setAttribute("type", "button");
+    button.setAttribute("onClick", "removeAuthor('" + parent.id + "')");
+    button.innerHTML = '<i class="fas fa-times"></i>';
+
+
     document.getElementById(actorType).appendChild(br);
-    document.getElementById(actorType).appendChild(p);
+    parent.appendChild(node);
+    if (actorNumber[index] > 1 || index == 1)
+        parent.appendChild(button);
 
     for (placeholder of placeholders) {
         var group = document.createElement("div");
@@ -158,14 +169,27 @@ function addPerson(actorType) {
         element.rows = "3";
         element.placeholder = placeholder[1];
         group.appendChild(element);
-        document.getElementById(actorType).appendChild(group);
+        parent.append(group);
     }
+
+    document.getElementById(actorType).appendChild(parent);
     actorNumber[index]++;
     document.getElementById('total_accused').value = actorNumber[0] - 1;
     document.getElementById('total_witness').value = actorNumber[1] - 1;
-    
+
 }
 
+function removeAuthor(authorId) {
+    var element = document.getElementById(authorId);
+    element.parentNode.removeChild(element);
+    if (authorId[0] == 'a') {
+        actorNumber[0] -= 1;
+        document.getElementById('total_accused').value = actorNumber[0] - 1;
+    } else {
+        actorNumber[1] -= 1;
+        document.getElementById('total_witness').value = actorNumber[1] - 1;
+    }
+}
 
 // CEP
 function clearAddressForm() {
