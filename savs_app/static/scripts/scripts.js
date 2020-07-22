@@ -124,7 +124,7 @@ function addPerson(actorType) {
         ["B", "Qual o vínculo dessa pessoa com a universidade? (caso saiba)"],
         ["C", "Qual o Instituto/Faculdade/Órgão onde a pessoa estuda ou trabalha (caso saiba)"],
         ["D", "Qual tipo vínculo você possui ou possuía com essa pessoa? (caso se aplique)"],
-        ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone celular, você a viu antes, como a conhece, quaisquer características físicas (cor do cabelo, marcas identificáveis, tatuagens, roupas, marcas de nascença) ou qualquer coisa que você se lembre dela."]
+        ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone, informações que permitam identificá-la, etc."]
     ]
 
     const node = document.createTextNode(capitalize(actorType) + complement + actorNumber[index] + ":");

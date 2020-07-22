@@ -44,7 +44,7 @@ h1 {
     background-color: #7F0FFF;
 }
 
-.active {
+.navbar .active {
     background-color: #5c0eb4;
     border-radius: 20pt;
 
