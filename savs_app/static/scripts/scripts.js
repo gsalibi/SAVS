@@ -65,7 +65,6 @@ function updateRequired(isIdentified) {
 
 
 function displayUniversityInfos(id_base) {
-    alert(id_base + "_connection_unicamp_complement")
     var selected = document.getElementById(id_base + "_connection_unicamp").value;
 
     if (selected === "Aluna(o) de graduação" || selected === "Aluna(o) de pós-graduação") {
@@ -140,39 +139,110 @@ function createGroup(elements) {
     return group
 }
 
-function createTextArea(id) {
+function createTextArea(id, placeholder) {
     const textArea = document.createElement("textarea");
     textArea.className = "form-control";
     textArea.name = id;
     textArea.id = id;
     textArea.rows = "3";
-    textArea.placeholder = "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone, informações que permitam identificá-la, etc.";
+    textArea.placeholder = placeholder;
     return textArea
 }
+
+function createInputField(id, placeholder, isHidden) {
+    const field = document.createElement("INPUT");
+    field.type = "text"
+    field.className = "form-control"
+    field.placeholder = placeholder
+    field.id = id
+    field.name = id
+    if (isHidden)
+        field.setAttribute("style", "display: none;");
+
+    return field
+}
+
+function createLegend(forID, innerHTML) {
+    const legend = document.createElement("LEGEND");
+    legend.className = "col-form-label";
+    legend.setAttribute("for", forID);
+    legend.innerHTML = innerHTML;
+
+    return legend
+}
+
+function displayActorComplement(id) {
+    if (document.getElementById(id).value == "Outro")
+        document.getElementById(id + "_complement").style.display = "block"
+    else
+        document.getElementById(id + "_complement").style.display = "none"
+}
+
+function createSelectField(id, innerHTML) {
+    const select = document.createElement("SELECT");
+    select.className = "form-control"
+    select.placeholder = "Nome completo ou parcial"
+    select.id = id
+    select.name = id
+    select.setAttribute("onChange", "displayActorComplement('" + id + "')");
+    select.innerHTML = innerHTML
+
+    return select
+}
+
 
 function getActorTitleText(actorType, actorIndex) {
     const complement = (actorType == "autor") ? "(a) " : " ";
     return capitalize(actorType) + complement + actorIndex + ":";
 }
 
+function createActorTitle(actorType, actorIndex) {
+    p = document.createElement("p");
+    p.id = actorType + actorIndex
+    p.appendChild(document.createTextNode(getActorTitleText(actorType, actorIndex)));
+    return p
+}
+
 
 function addPerson(actorType) {
     totalActors = (actorType == "autor") ? parseInt(document.getElementById('total_accused').value) + 1 : parseInt(document.getElementById('total_witness').value) + 1
 
-    const actorName  = actorType + totalActors
+    const actorName = actorType + totalActors
     const actorElement = crateParent(actorName);
-    const actorTitleText = document.createTextNode(getActorTitleText(actorType, totalActors));
+    const actorTitleText = createActorTitle(actorType, totalActors);
+    actorElement.appendChild(actorTitleText);
+    
     const br = document.createElement("br");
     const button = createButton(actorType, totalActors)
-
-    actorElement.appendChild(actorTitleText);
     actorElement.appendChild(button);
 
-    // para cada campo
-    var campo1 = createTextArea(actorName + "_person_information_complement");
-    var group = createGroup([campo1]);
-    actorElement.append(group);
 
+
+    // campos
+    const nameLegend = createLegend(actorName + "_name", "Qual o nome da pessoa? (caso saiba)");
+    const nameField = createInputField(actorName + "_name", "Nome completo ou parcial", false);
+    const nameGroup = createGroup([nameLegend, nameField]);
+
+    const connectionUnicampLegend = createLegend(actorName + "_connection_unicamp", "Qual o vínculo da pessoa com a Unicamp? (caso saiba)");
+    const connectionUnicampField = createSelectField(actorName + "_connection_unicamp", " <option>Aluna(o) de graduação</option> <option>Aluna(o) de pós-graduação</option> <option>Docente</option> <option>Terceirizada(o)</option> <option>Não possui vínculo com a Unicamp</option> <option>Outro</option> <option>Não sei</option>");
+    const connectionUnicampComplementField = createInputField(actorName + "_connection_unicamp_complement", "Qual?", true);
+    const connectionUnicampGroup = createGroup([connectionUnicampLegend, connectionUnicampField, connectionUnicampComplementField])
+
+    const instituteLegend = createLegend(actorName + "person_institute", "Em que instituto/faculdade/órgão da Unicamp essa pessoa estuda ou trabalha?");
+    const instituteField = createInputField(actorName + "person_institute", "Se houver e você souber", false);
+    const instituteGroup =  createGroup([instituteLegend, instituteField]);
+
+    const relationshipVictimLegend = createLegend(actorName + "_relationship_victim", "Você possui ou possuía algum tipo vínculo com esta pessoa?");
+    const relationshipVictimField = createSelectField(actorName + "_relationship_victim", " <option>Não possui nenhum vínculo</option> <option>Chefia</option> <option>Colega de trabalho</option> <option>Orientador(a)</option> <option>Colega de turma</option> <option>Amigo(a) pessoal</option> <option>Ex-namorado(a), cônjuge(a), companheiro(a)</option> <option>Outro</option>");
+    const relationshipVictimComplementField = createInputField(actorName + "_relationship_victim_complement", "Qual?", true);
+    const relationshipVictimGroup = createGroup([relationshipVictimLegend, relationshipVictimField, relationshipVictimComplementField])
+
+    const informationComplementLegend = createLegend(actorName + "_person_information_complement", "Você tem mais alguma informação sobre essa pessoa?");
+    const informationComplementField = createTextArea(actorName + "_person_information_complement", "Exemplos: número de telefone, informações que permitam identificá-la, etc.");
+    const  informationComplementGroup = createGroup([informationComplementLegend, informationComplementField])
+    // fim dos campos
+
+    actorElement.append(nameGroup, connectionUnicampGroup , instituteGroup, relationshipVictimGroup, informationComplementGroup);
 
     actorElement.append(br);
     document.getElementById(actorType).appendChild(actorElement);
@@ -191,8 +261,8 @@ function updateAuthors(actorType, removedIndex, currentIndex) {
         document.getElementById("remove_" + actorType + i).id = "remove_" + actorType + (i - 1);
 
         // update campos
-        document.getElementById(actorType + i + "_person_information_complement").name = actorType + (i-1) + "_person_information_complement"
-        document.getElementById(actorType + i + "_person_information_complement").id = actorType + (i-1) + "_person_information_complement"
+        document.getElementById(actorType + i + "_person_information_complement").name = actorType + (i - 1) + "_person_information_complement"
+        document.getElementById(actorType + i + "_person_information_complement").id = actorType + (i - 1) + "_person_information_complement"
     }
 }
 

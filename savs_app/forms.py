@@ -130,8 +130,7 @@ class EnvolvedPersonForm(forms.ModelForm):
             'person_connecton_unicamp',
             'person_connecton_unicamp_complement',
             'person_institute',
-            'person_ra',
-            'person_course',
             'person_relationship_victim',
+            'person_relationship_victim_complement',
             'person_information_complement'
         ]

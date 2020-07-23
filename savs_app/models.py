@@ -29,6 +29,7 @@ COMPLAINER_CONNECTION_UNICAMP = (
     ("Docente", "Docente"),
     ("Outro", "Outro"),
     ("Sem vínculo com a universidade", "Sem vínculo com a universidade"),
+    ("Não sei", "Não sei"),
 )
 
 EPISODE_DATE = (
@@ -134,7 +135,5 @@ class EnvolvedPerson(models.Model):
     person_connecton_unicamp = models.TextField(choices=COMPLAINER_CONNECTION_UNICAMP, default=None)
     person_connecton_unicamp_complement = models.TextField(null=True, blank=True)
     person_institute = models.TextField(null=True, blank=True)
-    person_ra = models.TextField(null=True, blank=True)
-    person_course = models.TextField(null=True, blank=True)
     person_relationship_victim = models.TextField(choices=PERSON_RELATIONSHIP_VICTIM, default=None)
     person_information_complement = models.TextField(null=True, blank=True)
