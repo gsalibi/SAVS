@@ -64,29 +64,30 @@ function updateRequired(isIdentified) {
 }
 
 
-function displayUniversityInfos() {
-    var selected = document.getElementById("id_identified_connection_unicamp").value;
+function displayUniversityInfos(id_base) {
+    alert(id_base + "_connection_unicamp_complement")
+    var selected = document.getElementById(id_base + "_connection_unicamp").value;
 
     if (selected === "Aluna(o) de graduação" || selected === "Aluna(o) de pós-graduação") {
-        document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
-        document.getElementById("id_identified_course").style.display = "block";
-        document.getElementById("id_identified_ra").style.display = "block";
-        document.getElementById("id_identified_institute").style.display = "block";
+        document.getElementById(id_base + "_connection_unicamp_complement").style.display = "none";
+        document.getElementById(id_base + "_course").style.display = "block";
+        document.getElementById(id_base + "_ra").style.display = "block";
+        document.getElementById(id_base + "_institute").style.display = "block";
     } else if (selected === "Docente") {
-        document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
-        document.getElementById("id_identified_course").style.display = "none";
-        document.getElementById("id_identified_ra").style.display = "block";
-        document.getElementById("id_identified_institute").style.display = "block";
+        document.getElementById(id_base + "_connection_unicamp_complement").style.display = "none";
+        document.getElementById(id_base + "_course").style.display = "none";
+        document.getElementById(id_base + "_ra").style.display = "block";
+        document.getElementById(id_base + "_institute").style.display = "block";
     } else if (selected === "Outro") {
-        document.getElementById("id_identified_connection_unicamp_complement").style.display = "block";
-        document.getElementById("id_identified_course").style.display = "none";
-        document.getElementById("id_identified_ra").style.display = "none";
-        document.getElementById("id_identified_institute").style.display = "none";
+        document.getElementById(id_base + "_connection_unicamp_complement").style.display = "block";
+        document.getElementById(id_base + "_course").style.display = "none";
+        document.getElementById(id_base + "_ra").style.display = "none";
+        document.getElementById(id_base + "_institute").style.display = "none";
     } else {
-        document.getElementById("id_identified_connection_unicamp_complement").style.display = "none";
-        document.getElementById("id_identified_course").style.display = "none";
-        document.getElementById("id_identified_ra").style.display = "none";
-        document.getElementById("id_identified_institute").style.display = "none";
+        document.getElementById(id_base + "_connection_unicamp_complement").style.display = "none";
+        document.getElementById(id_base + "_course").style.display = "none";
+        document.getElementById(id_base + "_ra").style.display = "none";
+        document.getElementById(id_base + "_institute").style.display = "none";
     }
 
 }
@@ -112,69 +113,99 @@ function displayOpenFieldChecked(element, fieldID) {
 }
 
 
-actorNumber = [1, 1];
-total_accused = 1
-total_witness = 0
 
-function addPerson(actorType) {
-    index = (actorType == "autor") ? 0 : 1
-    complement = (actorType == "autor") ? "(a) " : " "
-    const placeholders = [
-        ["A", "Qual o nome dessa pessoa? (caso saiba)"],
-        ["B", "Qual o vínculo dessa pessoa com a universidade? (caso saiba)"],
-        ["C", "Qual o Instituto/Faculdade/Órgão onde a pessoa estuda ou trabalha (caso saiba)"],
-        ["D", "Qual tipo vínculo você possui ou possuía com essa pessoa? (caso se aplique)"],
-        ["E", "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone, informações que permitam identificá-la, etc."]
-    ]
 
-    const node = document.createTextNode(capitalize(actorType) + complement + actorNumber[index] + ":");
-    const br = document.createElement("br");
-    const parent = document.createElement("div");
+function createButton(actorType, actorIndex) {
     const button = document.createElement("button");
-    name = (index == 0) ? "acusado" + (actorNumber[index] + 1) : "testemunha" + (actorNumber[index] + 1);
-
-    parent.setAttribute("id", name);
-
-    button.setAttribute("class", "bttn");
-    button.setAttribute("type", "button");
-    button.setAttribute("onClick", "removeAuthor('" + parent.id + "')");
+    button.className = "bttn";
+    button.id = "remove_" + actorType + actorIndex;
+    button.type = "button";
+    button.setAttribute("onClick", "removeAuthor('" + actorType + "', " + actorIndex + ")");
     button.innerHTML = '<i class="fas fa-times"></i>';
-
-
-    document.getElementById(actorType).appendChild(br);
-    parent.appendChild(node);
-    if (actorNumber[index] > 1 || index == 1)
-        parent.appendChild(button);
-
-    for (placeholder of placeholders) {
-        var group = document.createElement("div");
-        var element = document.createElement("textarea");
-        group.className = "form-group";
-        element.className = "form-control";
-        element.name = actorType + actorNumber[index] + placeholder[0];
-        element.id = actorType + actorNumber[index] + placeholder[0];
-        element.rows = "3";
-        element.placeholder = placeholder[1];
-        group.appendChild(element);
-        parent.append(group);
-    }
-
-    document.getElementById(actorType).appendChild(parent);
-    actorNumber[index]++;
-    document.getElementById('total_accused').value = actorNumber[0] - 1;
-    document.getElementById('total_witness').value = actorNumber[1] - 1;
-
+    return button
 }
 
-function removeAuthor(authorId) {
-    var element = document.getElementById(authorId);
+function crateParent(id) {
+    const parent = document.createElement("div");
+    parent.id = id;
+    return parent
+}
+
+function createGroup(elements) {
+    const group = document.createElement("div");
+    group.className = "form-group";
+    for (element of elements) {
+        group.appendChild(element);
+    }
+    return group
+}
+
+function createTextArea(id) {
+    const textArea = document.createElement("textarea");
+    textArea.className = "form-control";
+    textArea.name = id;
+    textArea.id = id;
+    textArea.rows = "3";
+    textArea.placeholder = "Você tem mais alguma informação sobre essa pessoa? Exemplos: número de telefone, informações que permitam identificá-la, etc.";
+    return textArea
+}
+
+function getActorTitleText(actorType, actorIndex) {
+    const complement = (actorType == "autor") ? "(a) " : " ";
+    return capitalize(actorType) + complement + actorIndex + ":";
+}
+
+
+function addPerson(actorType) {
+    totalActors = (actorType == "autor") ? parseInt(document.getElementById('total_accused').value) + 1 : parseInt(document.getElementById('total_witness').value) + 1
+
+    const actorName  = actorType + totalActors
+    const actorElement = crateParent(actorName);
+    const actorTitleText = document.createTextNode(getActorTitleText(actorType, totalActors));
+    const br = document.createElement("br");
+    const button = createButton(actorType, totalActors)
+
+    actorElement.appendChild(actorTitleText);
+    actorElement.appendChild(button);
+
+    // para cada campo
+    var campo1 = createTextArea(actorName + "_person_information_complement");
+    var group = createGroup([campo1]);
+    actorElement.append(group);
+
+
+    actorElement.append(br);
+    document.getElementById(actorType).appendChild(actorElement);
+    (actorType == "autor") ? document.getElementById('total_accused').value = totalActors : document.getElementById('total_witness').value = totalActors;
+}
+
+
+function updateAuthors(actorType, removedIndex, currentIndex) {
+    for (let i = removedIndex + 1; i <= currentIndex; i++) {
+        // update title text
+        document.getElementById(actorType + i).firstChild.data = getActorTitleText(actorType, (i - 1))
+        document.getElementById(actorType + i).id = actorType + (i - 1);
+
+        // update button
+        document.getElementById("remove_" + actorType + i).setAttribute("onClick", "removeAuthor('" + actorType + "', " + (i - 1) + ")");
+        document.getElementById("remove_" + actorType + i).id = "remove_" + actorType + (i - 1);
+
+        // update campos
+        document.getElementById(actorType + i + "_person_information_complement").name = actorType + (i-1) + "_person_information_complement"
+        document.getElementById(actorType + i + "_person_information_complement").id = actorType + (i-1) + "_person_information_complement"
+    }
+}
+
+function removeAuthor(actorType, actorIndex) {
+    var element = document.getElementById(actorType + actorIndex);
     element.parentNode.removeChild(element);
-    if (authorId[0] == 'a') {
-        actorNumber[0] -= 1;
-        document.getElementById('total_accused').value = actorNumber[0] - 1;
+
+    if (actorType == 'autor') {
+        updateAuthors(actorType, actorIndex, parseInt(document.getElementById('total_accused').value))
+        document.getElementById('total_accused').value = parseInt(document.getElementById('total_accused').value) - 1;
     } else {
-        actorNumber[1] -= 1;
-        document.getElementById('total_witness').value = actorNumber[1] - 1;
+        updateAuthors(actorType, actorIndex, parseInt(document.getElementById('total_witness').value))
+        document.getElementById('total_witness').value = parseInt(document.getElementById('total_witness').value) - 1;
     }
 }
 

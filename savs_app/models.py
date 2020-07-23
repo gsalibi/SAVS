@@ -31,14 +31,6 @@ COMPLAINER_CONNECTION_UNICAMP = (
     ("Sem vínculo com a universidade", "Sem vínculo com a universidade"),
 )
 
-COMPLAINER_WHY_ANONYMOUS = (
-    ("Porque a pessoa que vivenciou o episódio não quer fazer uma queixa", "Porque a pessoa que vivenciou o episódio não quer fazer uma queixa"),
-    ("Porque tenho medo de retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica", "Porque tenho medo de retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica"),
-    ("Porque não quero receber apoio e orientações do SAVS", "Porque não quero receber apoio e orientações do SAVS"),
-    ("Porque meu objetivo é que a universidade apenas tenha conhecimento deste episódio", "Porque meu objetivo é que a universidade apenas tenha conhecimento deste episódio"),
-    ("Outro", "Outro"),
-)
-
 EPISODE_DATE = (
     ("Na semana passada", "Na semana passada"),
     ("No mês passado", "No mês passado"),
@@ -87,11 +79,11 @@ class AnonymousComplaint(models.Model):
     anonymous_connection_unicamp_complement = models.TextField(null=True, blank=True)
     anonymous_support_requested = models.TextField(choices=COMPLAINER_SUPPORT_REQUESTED, default=None)
     anonymous_support_requested_complement = models.TextField(null=True, blank=True)
-    anonymous_why_anonymous1 = models.BooleanField(default=None)
-    anonymous_why_anonymous2 = models.BooleanField(default=None)
-    anonymous_why_anonymous3 = models.BooleanField(default=None)
-    anonymous_why_anonymous4 = models.BooleanField(default=None)
-    anonymous_why_anonymous5 = models.BooleanField(default=None)
+    anonymous_why_anonymous1 = models.BooleanField(default=False)
+    anonymous_why_anonymous2 = models.BooleanField(default=False)
+    anonymous_why_anonymous3 = models.BooleanField(default=False)
+    anonymous_why_anonymous4 = models.BooleanField(default=False)
+    anonymous_why_anonymous5 = models.BooleanField(default=False)
     anonymous_why_anonymous_complement = models.TextField(null=True, blank=True)
     anonymous_episode_date = models.TextField(choices=EPISODE_DATE, default=None)
     anonymous_episode_date_complement = models.TextField(null=True, blank=True)
@@ -109,7 +101,7 @@ class IdentifiedComplaint(models.Model):
     identified_gender_complement = models.TextField(null=True, blank=True)
     identified_name = models.TextField(default=None)
     identified_cpf = models.TextField(default=None)
-    identified_is_social_name = models.BooleanField(null=True, default=None)
+    identified_is_social_name = models.BooleanField(default=False)
     identified_zipcode = models.TextField(default=None)
     identified_neighborhood = models.TextField(default=None)
     identified_city = models.TextField(default=None)

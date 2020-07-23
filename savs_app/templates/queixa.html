@@ -66,26 +66,46 @@
                             {{ anonymous_form.anonymous_connection_unicamp_complement }}
                         </div>
                         <div class="form-group">
-                            <legend for="id_anonymous_gender" class="col-form-label">Como você define a sua
-                                identidade ou expressão de gênero?</legend>
+                            <legend for="id_anonymous_gender" class="col-form-label">
+                                Como você define a sua identidade ou expressão de gênero?
+                            </legend>
                             {{ anonymous_form.anonymous_gender }}
                         </div>
                         <div class="form-group">
                             {{ anonymous_form.anonymous_gender_complement }}
                         </div>
                         <div class="form-group">
-                            <legend for="id_anonymous_why_anonymous" class="col-form-label">Por que você optou por
-                                apresentar uma queixa anônima?
-                            </legend>
-                            {{ anonymous_form.anonymous_why_anonymous }}
+                            <p>Por que você optou por apresentar uma queixa anônima? </p>
+
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous1 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous1"> Porque a pessoa que vivenciou o episódio não quer fazer uma queixa </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous2 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous2"> Porque tenho medo de retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous3 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous3"> Porque não quero receber apoio e orientações do SAVS", "Porque não quero receber apoio e orientações do SAVS </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous4 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous4"> Porque meu objetivo é que a universidade apenas tenha conhecimento deste episódio </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous5 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous5"> Outro </label>
+                            </div>
                         </div>
                         <div class="form-group">
                             {{ anonymous_form.anonymous_why_anonymous_complement }}
                         </div>
                         <div class="form-group">
-                            <legend for="id_anonymous_support_requested" class="col-form-label">Você ou a pessoa em
-                                nome de quem você está se queixando, procurou alguma forma de apoio para lidar com este
-                                episódio?</legend>
+                            <legend for="id_anonymous_support_requested" class="col-form-label">
+                                Você ou a pessoa em nome de quem você está se queixando, procurou alguma forma de apoio
+                                para lidar com este episódio?
+                            </legend>
                             {{ anonymous_form.anonymous_support_requested }}
                         </div>
                         <div class="form-group">
@@ -242,7 +262,7 @@
 
 
     <!-- Envolved People -->
-    <input type="hidden" name="total_accused" id="total_accused" value=1>
+    <input type="hidden" name="total_accused" id="total_accused" value=0>
     <input type="hidden" name="total_witness" id="total_witness" value=0>
 
     <section id="form-2">
@@ -262,7 +282,7 @@
                         <legend for="teste" class="col-form-label">
                             Qual o vínculo da pessoa com a Unicamp? (caso saiba)
                         </legend>
-                        <select class="form-control" onchange="displayUniversityInfos()" id="teste">
+                        <select class="form-control" onchange="displayUniversityInfos('id_actor')" id="id_actor_connection_unicamp">
                             <option>Aluna(o) de graduação</option>
                             <option>Aluna(o) de pós-graduação</option>
                             <option>Funcionária(o)</option>
@@ -271,19 +291,19 @@
                             <option>Outro/Não sei</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input class="form-control" placeholder="Instituto/Faculdade/Órgão..." list="listInstitute">
+                            <input class="form-control" placeholder="Instituto/Faculdade/Órgão..." list="listInstitute" id='id_actor_institute'>
                         </div>
                         <div class="form-group col-md-2">
-                            <input class="form-control" placeholder="RA/Matrícula">
+                            <input class="form-control" placeholder="RA/Matrícula" id='id_actor_ra'>
                         </div>
                         <div class="form-group col-md-4">
-                            <input class="form-control" placeholder="Curso..." list="listInstitute">
+                            <input class="form-control" placeholder="Curso..." list="listInstitute" id='id_actor_course'>
                         </div>
                         <div class="form-group col-md-12">
-                            <input class="form-control" placeholder="Vínculo">
+                            <input class="form-control" placeholder="Vínculo" id='id_actor_connection_unicamp_complement'  style="display: none;">
                         </div>
                     </div>
 
@@ -293,6 +313,10 @@
 
                     <div id="autor"></div>
                     <script>addPerson('autor')</script>
+
+
+
+                    
                     <div class="form-group" style="text-align: center;">
                         <button type="button" class="btn btn-secondary" onclick="addPerson('autor')">
                             Adicionar Novo(a) Autor(a)
