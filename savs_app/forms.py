@@ -87,8 +87,6 @@ class IdentifiedComplaintForm(forms.ModelForm):
             'identified_episode_location_complement',
             'identified_episode_date_period',
             'identified_episode_date_period_complement',
-
-
             'identified_episode_report',
         ]
         widgets = {
