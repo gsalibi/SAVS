@@ -75,9 +75,16 @@
                             {{ anonymous_form.anonymous_gender_complement }}
                         </div>
                         <div class="form-group">
-                            <p>Por que você optou por apresentar uma queixa anônima? </p>
-
-                            <div class="form-check">
+                            <legend for="id_anonymous_race" class="col-form-label">
+                                Como você se auto-declara em relação à raça/cor/etnia?
+                            </legend>
+                            {{ anonymous_form.anonymous_race }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="checkboxes" class="col-form-label">
+                                Por que você optou por apresentar uma queixa anônima?
+                            </legend>
+                            <div class="form-check" id="checkboxes">
                                 {{ anonymous_form.anonymous_why_anonymous1 }}
                                 <label class="form-check-label" for="id_anonymous_why_anonymous1"> Porque a pessoa que vivenciou o episódio não quer fazer uma queixa </label>
                             </div>
@@ -206,6 +213,12 @@
                     <div class="form-group">
                         {{ identified_form.identified_gender_complement }}
                     </div>
+                    <div class="form-group">
+                        <legend for="id_identified_race" class="col-form-label">
+                            Como você se auto-declara em relação à raça/cor/etnia?
+                        </legend>
+                        {{ identified_form.identified_race }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -307,8 +320,8 @@
                                     required>
                                 <label class="form-check-label" for="defaultCheck1">
                                     Declaro que li e compreendi o protocolo para recebimentos de queixas e denúncias
-                                    da Política de Combate à Violência Sexual e à Discriminação baseada em Gênero e/ou
-                                    Sexualidade da Unicamp e que concordo com os procedimentos definidos nele.
+                                    da <a href="/violencia-sexual/#politica" target="_blank">Política de Combate à Violência Sexual</a> e <a href="/igualdade/#pol%C3%ADtica_de_Combate" target="_blank">à Discriminação baseada em Gênero e/ou
+                                        Sexualidade</a> da Unicamp e que concordo com os procedimentos definidos nele.
                                 </label>
                             </div>
                         </div>

@@ -16,6 +16,14 @@ COMPLAINER_GENDER = (
     ("Prefiro não responder", "Prefiro não responder"),
 )
 
+COMPLAINER_RACE = (
+    ("Branco(a)", "Branco(a)"),
+    ("Preto(a)", "Preto(a)"),
+    ("Amarelo(a) ", "Amarelo(a)"),
+    ("Indígena", "Indígena"),
+    ("Prefiro não responder", "Prefiro não responder"),
+)
+
 COMPLAINER_SUPPORT_REQUESTED = (
     ("Sim", "Sim"),
     ("Não", "Não"),
@@ -74,6 +82,7 @@ class AnonymousComplaint(models.Model):
     anonymous_position_complement = models.TextField(null=True, blank=True)
     anonymous_gender = models.TextField(choices=COMPLAINER_GENDER, default=None)
     anonymous_gender_complement = models.TextField(null=True, blank=True)
+    anonymous_race = models.TextField(choices=COMPLAINER_RACE, default=None)
     anonymous_connection_unicamp = models.TextField(choices=COMPLAINER_CONNECTION_UNICAMP, default=None)
     anonymous_connection_unicamp_complement = models.TextField(null=True, blank=True)
     anonymous_support_requested = models.TextField(choices=COMPLAINER_SUPPORT_REQUESTED, default=None)
@@ -98,6 +107,7 @@ class IdentifiedComplaint(models.Model):
     identified_position_complement = models.TextField(null=True, blank=True)
     identified_gender = models.TextField(choices=COMPLAINER_GENDER, default=None)
     identified_gender_complement = models.TextField(null=True, blank=True)
+    identified_race = models.TextField(choices=COMPLAINER_RACE, default=None)
     identified_name = models.TextField(default=None)
     identified_cpf = models.TextField(default=None)
     identified_is_social_name = models.BooleanField(default=False)
