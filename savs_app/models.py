@@ -33,30 +33,28 @@ COMPLAINER_CONNECTION_UNICAMP = (
 )
 
 EPISODE_DATE = (
-    ("Na semana passada", "Na semana passada"),
-    ("No mês passado", "No mês passado"),
-    ("No ano passado", "No ano passado"),
     ("Eu sei a data exata", "Eu sei a data exata"),
-    ("Não sei", "Não sei"),
+    ("Eu não sei a data exata, mas sei aproximadamente", "Eu não sei a data exata, mas sei aproximadamente"),
+    ("Não há uma data específica, pois são episódios recorrentes, que continuam acontecendo", "Não há uma data específica, pois são episódios recorrentes, que continuam acontecendo"),
+    ("Não há uma data específica, pois eram episódios recorrentes, mas que já deixaram de acontecer", "Não há uma data específica, pois eram episódios recorrentes, mas que já deixaram de acontecer"),
+    ("Outro", "Outro"),
 )
 
 EPISODE_PERIOD = (
-    ("Manhã", "Manhã"),
-    ("Tarde", "Tarde"),
-    ("Noite", "Noite"),
-    ("Madrugada", "Madrugada"),
     ("Eu sei o horário exato", "Eu sei o horário exato"),
-    ("Não sei/Não se aplica", "Não sei/Não se aplica"),
+    ("Eu não sei o horário, mas sei aproximadamente", "Eu não sei o horário, mas sei aproximadamente"),
+    ("Não há um horário específico, pois tratam-se de episódios recorrentes. ", "Não há um horário específico, pois tratam-se de episódios recorrentes. "),
+    ("Não sei o horário", "Não sei o horário"),
 )
 
 EPISODE_LOCATION = (
     ("Na universidade", "Na universidade"),
     ("Na minha casa", "Na minha casa"),
     ("Em uma festa", "Em uma festa"),
-    ("Em um bar", "Em um bar"),
-    ("Foi online", "Foi online"),
     ("Outro", "Outro"),
-    ("Não sei", "Não sei"),
+    ("Foram em vários lugares", "Foram em vários lugares"),
+    ("Não foi em um local físico, foi online", "Não foi em um local físico, foi online"),
+    ("Não sei o local", "Não sei o local"),
 )
 
 
