@@ -18,6 +18,7 @@ def queixa_view(request):
     is_identified = request.POST.get("type_complaint") == 'identified'
     identified_form = IdentifiedComplaintForm(request.POST or None)
     anonymous_form = AnonymousComplaintForm(request.POST or None)
+    envolved_form = EnvolvedPersonForm(request.POST or None)
 
     if is_identified:
         if identified_form.is_valid():
@@ -38,17 +39,19 @@ def queixa_view(request):
             if envolved_form.is_valid():
                 new_envolved = envolved_form.save(commit=False)
                 new_envolved.is_accused = True
-                new_envolved.person_name = request.POST.get("acusado" + str(i) + "A")
-                new_envolved.person_connecton_with_unicamp = request.POST.get("acusado" + str(i) + "B")
-                new_envolved.person_institute = request.POST.get("acusado" + str(i) + "C")
-                new_envolved.person_relationship_with_victim = request.POST.get("acusado" + str(i) + "D")
-                new_envolved.person_information_complement = request.POST.get("acusado" + str(i) + "E")
+                new_envolved.person_name = request.POST.get("autor" + str(i) + "_name")
+                new_envolved.person_connecton_with_unicamp = request.POST.get("autor" + str(i) + "_connection_unicamp")
+                new_envolved.person_connecton_unicamp_complement = request.POST.get("autor" + str(i) + "_connection_unicamp_complement")
+                new_envolved.person_institute = request.POST.get("autor" + str(i) + "_institute")
+                new_envolved.person_relationship_victim = request.POST.get("autor" + str(i) + "_relationship_victim")
+                new_envolved.person_relationship_victim_complement = request.POST.get("autor" + str(i) + "_relationship_victim_complement")
+                new_envolved.person_information_complement = request.POST.get("autor" + str(i) + "_information_complement")
                 if is_identified:
                     new_envolved.identified_complaint = new_complaint
                 else:
                     new_envolved.anonymous_complaint = new_complaint
                 new_envolved.save()
-                envolved_form = EnvolvedPersonForm()
+                envolved_form = EnvolvedPersonForm(None)
                 
         # add witnesses
         for i in range(1, int(total_witness) + 1):
@@ -56,22 +59,25 @@ def queixa_view(request):
             if envolved_form.is_valid():
                 new_envolved = envolved_form.save(commit=False)
                 new_envolved.is_accused = False
-                new_envolved.person_name = request.POST.get("testemunha" + str(i) + "A")
-                new_envolved.person_connecton_with_unicamp = request.POST.get("testemunha" + str(i) + "B")
-                new_envolved.person_institute = request.POST.get("testemunha" + str(i) + "C")
-                new_envolved.person_relationship_with_victim = request.POST.get("testemunha" + str(i) + "D")
-                new_envolved.person_information_complement = request.POST.get("testemunha" + str(i) + "E")
+                new_envolved.person_name = request.POST.get("testemunha" + str(i) + "_name")
+                new_envolved.person_connecton_with_unicamp = request.POST.get("testemunha" + str(i) + "_connection_unicamp")
+                new_envolved.person_connecton_unicamp_complement = request.POST.get("testemunha" + str(i) + "_connection_unicamp_complement")
+                new_envolved.person_institute = request.POST.get("testemunha" + str(i) + "_institute")
+                new_envolved.person_relationship_victim = request.POST.get("testemunha" + str(i) + "_relationship_victim")
+                new_envolved.person_relationship_victim_complement = request.POST.get("testemunha" + str(i) + "_relationship_victim_complement")
+                new_envolved.person_information_complement = request.POST.get("testemunha" + str(i) + "_information_complement")
                 if is_identified:
                     new_envolved.identified_complaint = new_complaint
                 else:
                     new_envolved.anonymous_complaint = new_complaint
                 new_envolved.save()
-                envolved_form = EnvolvedPersonForm()
+                envolved_form = EnvolvedPersonForm(None)
         new_complaint = None
 
     context = {
         'anonymous_form': anonymous_form,
-        'identified_form': identified_form
+        'identified_form': identified_form,
+        'envolved_form': envolved_form
     }
     return render(request, "queixa.html", context)
 

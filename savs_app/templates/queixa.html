@@ -1,7 +1,7 @@
 {% extends "./base.html" %} {% block content %}
 
 
-<form method="POST" id="generalForm" onsubmit="updateEnvolvedPersonForm()"> {% csrf_token %}
+<form method="POST" id="generalForm"> {% csrf_token %}
 
 
     <id name="envolvedPersonForm" style="display: none;">
@@ -14,7 +14,18 @@
             <div class="card">
                 <h5 class="card-header">Apresentar Queixa</h5>
                 <div class="card-body">
-                    <p class="card-text">Selecione o tipo de denúncia abaixo: </p>
+                    <p>
+                        Antes de preencher esse formulário, conheça o Protocolo de recebimento de queixas e denúncias da
+                        <a href="/violencia-sexual/#politica" target="blank">Política de Combate à Violência Sexual</a>
+                        e <a href="/igualdade/#política_de_Combate">à Discriminação baseada em Gênero e/ou
+                            Sexualidade</a> da Unicamp.
+                    </p>
+                    <p>
+                        Importante! Esta não é uma ferramenta adequada para situações emergenciais. Se você está sob
+                        ameaça, risco imediato ou vivenciou um episódio de assalto sexual (estupro ou tentativa de
+                        estupro) nas últimas 72 horas <a href="">clique aqui</a>.
+                    </p>
+                    <p class="card-text">Selecione o tipo de denúncia abaixo:</p>
                     <div id="type" class="form-group" style="text-align: center;">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="type_complaint" id="inlineIdentified"
@@ -36,7 +47,7 @@
                         identificar. Elas apenas nos ajudam a conhecer o perfil das pessoas que apresentam queixas
                         anônimas e, a partir disso, aprimorar os nossos procedimentos e ferramentas.</p>
 
-                    <div id="commom-questions" style="display: none;">
+                    <div id="anonymous-questions" style="display: none;">
                         <div class="form-group">
                             <legend for="id_anonymous_position" class="col-form-label">De que posição você está
                                 apresentando essa queixa?</legend>
@@ -45,17 +56,6 @@
                         <div class="form-group">
                             {{ anonymous_form.anonymous_position_complement }}
                         </div>
-                        <div class="form-group">
-                            <legend for="id_anonymous_gender" class="col-form-label">Como você define a sua
-                                identidade ou expressão de gênero?</legend>
-                            {{ anonymous_form.anonymous_gender }}
-                        </div>
-                        <div class="form-group">
-                            {{ anonymous_form.anonymous_gender_complement }}
-                        </div>
-                    </div>
-
-                    <div id="anonymous-questions" style="display: none;">
                         <div class="form-group">
                             <legend for="id_anonymous_connection_unicamp" class="col-form-label">Qual o seu vínculo
                                 com a Unicamp?
@@ -66,22 +66,57 @@
                             {{ anonymous_form.anonymous_connection_unicamp_complement }}
                         </div>
                         <div class="form-group">
-                            <legend for="id_anonymous_support_requested" class="col-form-label">Você ou a pessoa em
-                                nome de quem você está se queixando, procurou alguma forma de apoio para lidar com este
-                                episódio?</legend>
+                            <legend for="id_anonymous_gender" class="col-form-label">
+                                Como você define a sua identidade ou expressão de gênero?
+                            </legend>
+                            {{ anonymous_form.anonymous_gender }}
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_gender_complement }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="id_anonymous_race" class="col-form-label">
+                                Como você se auto-declara em relação à raça/cor/etnia?
+                            </legend>
+                            {{ anonymous_form.anonymous_race }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="checkboxes" class="col-form-label">
+                                Por que você optou por apresentar uma queixa anônima?
+                            </legend>
+                            <div class="form-check" id="checkboxes">
+                                {{ anonymous_form.anonymous_why_anonymous1 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous1"> Porque a pessoa que vivenciou o episódio não quer fazer uma queixa </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous2 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous2"> Porque tenho medo de retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous3 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous3"> Porque não quero receber apoio e orientações do SAVS", "Porque não quero receber apoio e orientações do SAVS </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous4 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous4"> Porque meu objetivo é que a universidade apenas tenha conhecimento deste episódio </label>
+                            </div>
+                            <div class="form-check">
+                                {{ anonymous_form.anonymous_why_anonymous5 }}
+                                <label class="form-check-label" for="id_anonymous_why_anonymous5"> Outro </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ anonymous_form.anonymous_why_anonymous_complement }}
+                        </div>
+                        <div class="form-group">
+                            <legend for="id_anonymous_support_requested" class="col-form-label">
+                                Você ou a pessoa em nome de quem você está se queixando, procurou alguma forma de apoio
+                                para lidar com este episódio?
+                            </legend>
                             {{ anonymous_form.anonymous_support_requested }}
                         </div>
                         <div class="form-group">
                             {{ anonymous_form.anonymous_support_requested_complement }}
-                        </div>
-                        <div class="form-group">
-                            <legend for="id_anonymous_why_anonymous" class="col-form-label">Por que você optou por
-                                apresentar uma queixa anônima?
-                            </legend>
-                            {{ anonymous_form.anonymous_why_anonymous }}
-                        </div>
-                        <div class="form-group">
-                            {{ anonymous_form.anonymous_why_anonymous_complement }}
                         </div>
                     </div>
                 </div>
@@ -151,30 +186,38 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             {{ identified_form.identified_institute }}
-                            <datalist id="listInstitute">
-                                <option>Instituto 1</option>
-                                <option>Instituto 2</option>
-                                <option>Instituto 3</option>
-                                <option>Faculdade 1</option>
-                                <option>Faculdade 2</option>
-                            </datalist>
                         </div>
                         <div class="form-group col-md-2">
                             {{ identified_form.identified_ra }}
                         </div>
                         <div class="form-group col-md-4">
                             {{ identified_form.identified_course }}
-                            <datalist id="listCourse">
-                                <option>Curso 1</option>
-                                <option>Curso 2</option>
-                                <option>Curso 3</option>
-                            </datalist>
                         </div>
                         <div class="form-group col-md-12">
                             {{ identified_form.identified_connection_unicamp_complement }}
                         </div>
                     </div>
                     <div class="form-group">
+                        <legend for="id_identified_position" class="col-form-label">De que posição você está
+                            apresentando essa queixa?</legend>
+                        {{ identified_form.identified_position }}
+                    </div>
+                    <div class="form-group">
+                        {{ identified_form.identified_position_complement }}
+                    </div>
+                    <div class="form-group">
+                        <legend for="id_identified_gender" class="col-form-label">Como você define a sua
+                            identidade ou expressão de gênero?</legend>
+                        {{ identified_form.identified_gender }}
+                    </div>
+                    <div class="form-group">
+                        {{ identified_form.identified_gender_complement }}
+                    </div>
+                    <div class="form-group">
+                        <legend for="id_identified_race" class="col-form-label">
+                            Como você se auto-declara em relação à raça/cor/etnia?
+                        </legend>
+                        {{ identified_form.identified_race }}
                     </div>
                 </div>
             </div>
@@ -199,23 +242,23 @@
                     </div>
 
                     <div class="form-row">
-                        <legend for="id_episode_date_period" class="col-form-label">Em qual período do dia
-                            aconteceu?
-                        </legend>
-                        <div class="form-group col-md-6">
-                            {{ anonymous_form.anonymous_episode_date_period }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ anonymous_form.anonymous_episode_date_period_complement }}
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <legend for="id_episode_location" class="col-form-label">Onde aconteceu?</legend>
                         <div class="form-group col-md-6">
                             {{ anonymous_form.anonymous_episode_location }}
                         </div>
                         <div class="form-group col-md-6">
                             {{ anonymous_form.anonymous_episode_location_complement }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <legend for="id_episode_date_period" class="col-form-label">Em qual horário?
+                        </legend>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date_period }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ anonymous_form.anonymous_episode_date_period_complement }}
                         </div>
                     </div>
 
@@ -232,7 +275,7 @@
 
 
     <!-- Envolved People -->
-    <input type="hidden" name="total_accused" id="total_accused" value=1>
+    <input type="hidden" name="total_accused" id="total_accused" value=0>
     <input type="hidden" name="total_witness" id="total_witness" value=0>
 
     <section id="form-2">
@@ -240,11 +283,12 @@
             <div class="card">
                 <h5 class="card-header">Pessoas Envolvidas</h5>
                 <div class="card-body">
-                    <div id="acusado"></div>
-                    <script>addPerson('acusado')</script>
+                    <div id="autor"></div>
+                    <script>addPerson('autor')</script>
+
                     <div class="form-group" style="text-align: center;">
-                        <button type="button" class="btn btn-secondary" onclick="addPerson('acusado')">
-                            Adicionar Novo Acusado
+                        <button type="button" class="btn btn-secondary" onclick="addPerson('autor')">
+                            Adicionar Novo(a) Autor(a)
                         </button>
                     </div>
 
@@ -272,11 +316,12 @@
                     <div style="text-align: left;">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="option1" id="defaultCheck1" required>
+                                <input class="form-check-input" type="checkbox" value="option1" id="defaultCheck1"
+                                    required>
                                 <label class="form-check-label" for="defaultCheck1">
                                     Declaro que li e compreendi o protocolo para recebimentos de queixas e denúncias
-                                    da Política de Combate à Violência Sexual e à Discriminação baseada em Gênero e/ou
-                                    Sexualidade da Unicamp e que concordo com os procedimentos definidos nele.
+                                    da <a href="/violencia-sexual/#politica" target="_blank">Política de Combate à Violência Sexual</a> e <a href="/igualdade/#pol%C3%ADtica_de_Combate" target="_blank">à Discriminação baseada em Gênero e/ou
+                                        Sexualidade</a> da Unicamp e que concordo com os procedimentos definidos nele.
                                 </label>
                             </div>
                         </div>
@@ -288,4 +333,26 @@
     </section>
 
 </form>
+
+
+<datalist id="listInstitute">
+    <option>Instituto 1</option>
+    <option>Instituto 2</option>
+    <option>Instituto 3</option>
+    <option>Faculdade 1</option>
+    <option>Faculdade 2</option>
+</datalist>
+
+<datalist id="listCourse">
+    <option>Curso 1</option>
+    <option>Curso 2</option>
+    <option>Curso 3</option>
+</datalist>
+
+<script>
+    active = document.getElementsByClassName("active")[0];
+    active.className = "nav-item";
+    document.getElementById("savs_item").className = "nav-item dropdown active";
+</script>
+
 {% endblock %}

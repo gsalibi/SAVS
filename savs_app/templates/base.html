@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu|Roboto" rel="stylesheet">
 
     <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/bootstrap_purple.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
@@ -21,9 +22,15 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Bootstrap Scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script src="{% static 'scripts/scripts.js' %}"></script>
 </head>
 
@@ -38,19 +45,21 @@
 
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item active" id="home_item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:sobre' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Quem Somos </a>
+                <li class="nav-item dropdown" id="sobre_item">
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:sobre' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Quem Somos </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#missao">Missão</a>
+                        <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#missao" onclick="">Missão</a>
                         <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#equipe">Equipe</a>
                         <a class="dropdown-item" href="{% url 'savs_app:sobre' %}#historico">Histórico</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:igualdade' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Igualdade de
+                <li class="nav-item dropdown" id="igualdade_item">
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:igualdade' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Igualdade de
                         Gênero </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#conceitos">Conceitos
@@ -60,8 +69,9 @@
                         <a class="dropdown-item" href="{% url 'savs_app:igualdade' %}#relatorios">Relatórios</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:violencia-sexual' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Violência
+                <li class="nav-item dropdown" id="violencia_item">
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:violencia-sexual' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Violência
                         Sexual </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#conceitos">Conceitos
@@ -71,8 +81,9 @@
                         <a class="dropdown-item" href="{% url 'savs_app:violencia-sexual' %}#relatorios">Relatórios</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:savs' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SAVS </a>
+                <li class="nav-item dropdown" id="savs_item">
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:savs' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SAVS </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:savs' %}#o_que_e">O que é o SAVS?</a>
                         <a class="dropdown-item" href="{% url 'savs_app:savs' %}#protocolo">Protocolo de Recebimento de
@@ -82,8 +93,9 @@
                                 QUEIXA</strong></a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:participe' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Participe </a>
+                <li class="nav-item dropdown" id="participe_item">
+                    <a class="nav-link dropdown-toggle" href="{% url 'savs_app:participe' %}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Participe </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'savs_app:participe' %}#eventos">Eventos</a>
                         <a class="dropdown-item" href="{% url 'savs_app:participe' %}#treinamentos">Treinamentos</a>

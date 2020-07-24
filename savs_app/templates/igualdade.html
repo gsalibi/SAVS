@@ -1,7 +1,6 @@
 {% extends "./base.html" %} {% block content %}
 <!-- Conceitos fundamentais-->
 
-<h1 class="container-fluid">Igualdade de Gênero</h1>
 <!-- Missão-->
 <section id="conceitos">
     <div class="container-fluid">
@@ -47,4 +46,10 @@
     </div>
 </section>
 
-{% endblock %} © 2020 GitHub, Inc. Terms Privacy Security Status Help Contact GitHub Pricing API Training Blog About
+<script>
+    active = document.getElementsByClassName("active")[0];
+    active.className = "nav-item";
+    document.getElementById("igualdade_item").className = "nav-item dropdown active";
+</script>
+
+{% endblock %}
