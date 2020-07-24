@@ -136,4 +136,5 @@ class EnvolvedPerson(models.Model):
     person_connecton_unicamp_complement = models.TextField(null=True, blank=True)
     person_institute = models.TextField(null=True, blank=True)
     person_relationship_victim = models.TextField(choices=PERSON_RELATIONSHIP_VICTIM, default=None)
+    person_relationship_victim_complement = models.TextField(null=True, blank=True)
     person_information_complement = models.TextField(null=True, blank=True)

@@ -165,6 +165,7 @@ function createInputField(id, placeholder, isHidden) {
 function createLegend(forID, innerHTML) {
     const legend = document.createElement("LEGEND");
     legend.className = "col-form-label";
+    legend.id = forID + "_legend";
     legend.setAttribute("for", forID);
     legend.innerHTML = innerHTML;
 
@@ -198,7 +199,7 @@ function getActorTitleText(actorType, actorIndex) {
 
 function createActorTitle(actorType, actorIndex) {
     p = document.createElement("p");
-    p.id = actorType + actorIndex
+    p.id = actorType + actorIndex + "_title";
     p.appendChild(document.createTextNode(getActorTitleText(actorType, actorIndex)));
     return p
 }
@@ -209,13 +210,11 @@ function addPerson(actorType) {
 
     const actorName = actorType + totalActors
     const actorElement = crateParent(actorName);
-    const actorTitleText = createActorTitle(actorType, totalActors);
-    actorElement.appendChild(actorTitleText);
-    
     const br = document.createElement("br");
     const button = createButton(actorType, totalActors)
     actorElement.appendChild(button);
-
+    const actorTitleText = createActorTitle(actorType, totalActors);
+    actorElement.appendChild(actorTitleText);
 
 
     // campos
@@ -228,21 +227,21 @@ function addPerson(actorType) {
     const connectionUnicampComplementField = createInputField(actorName + "_connection_unicamp_complement", "Qual?", true);
     const connectionUnicampGroup = createGroup([connectionUnicampLegend, connectionUnicampField, connectionUnicampComplementField])
 
-    const instituteLegend = createLegend(actorName + "person_institute", "Em que instituto/faculdade/órgão da Unicamp essa pessoa estuda ou trabalha?");
-    const instituteField = createInputField(actorName + "person_institute", "Se houver e você souber", false);
-    const instituteGroup =  createGroup([instituteLegend, instituteField]);
+    const instituteLegend = createLegend(actorName + "_institute", "Em que instituto/faculdade/órgão da Unicamp essa pessoa estuda ou trabalha?");
+    const instituteField = createInputField(actorName + "_institute", "Se houver e você souber", false);
+    const instituteGroup = createGroup([instituteLegend, instituteField]);
 
     const relationshipVictimLegend = createLegend(actorName + "_relationship_victim", "Você possui ou possuía algum tipo vínculo com esta pessoa?");
     const relationshipVictimField = createSelectField(actorName + "_relationship_victim", " <option>Não possui nenhum vínculo</option> <option>Chefia</option> <option>Colega de trabalho</option> <option>Orientador(a)</option> <option>Colega de turma</option> <option>Amigo(a) pessoal</option> <option>Ex-namorado(a), cônjuge(a), companheiro(a)</option> <option>Outro</option>");
     const relationshipVictimComplementField = createInputField(actorName + "_relationship_victim_complement", "Qual?", true);
     const relationshipVictimGroup = createGroup([relationshipVictimLegend, relationshipVictimField, relationshipVictimComplementField])
 
-    const informationComplementLegend = createLegend(actorName + "_person_information_complement", "Você tem mais alguma informação sobre essa pessoa?");
-    const informationComplementField = createTextArea(actorName + "_person_information_complement", "Exemplos: número de telefone, informações que permitam identificá-la, etc.");
-    const  informationComplementGroup = createGroup([informationComplementLegend, informationComplementField])
+    const informationComplementLegend = createLegend(actorName + "_information_complement", "Você tem mais alguma informação sobre essa pessoa?");
+    const informationComplementField = createTextArea(actorName + "_information_complement", "Exemplos: número de telefone, informações que permitam identificá-la, etc.");
+    const informationComplementGroup = createGroup([informationComplementLegend, informationComplementField])
     // fim dos campos
 
-    actorElement.append(nameGroup, connectionUnicampGroup , instituteGroup, relationshipVictimGroup, informationComplementGroup);
+    actorElement.append(nameGroup, connectionUnicampGroup, instituteGroup, relationshipVictimGroup, informationComplementGroup);
 
     actorElement.append(br);
     document.getElementById(actorType).appendChild(actorElement);
@@ -252,17 +251,47 @@ function addPerson(actorType) {
 
 function updateAuthors(actorType, removedIndex, currentIndex) {
     for (let i = removedIndex + 1; i <= currentIndex; i++) {
+        // update id
+        document.getElementById(actorType + i).id = actorType + (i - 1)
+
         // update title text
-        document.getElementById(actorType + i).firstChild.data = getActorTitleText(actorType, (i - 1))
-        document.getElementById(actorType + i).id = actorType + (i - 1);
+        document.getElementById(actorType + i + "_title").firstChild.data = getActorTitleText(actorType, (i - 1))
+        document.getElementById(actorType + i + "_title").id = actorType + (i - 1) + "_title";
 
         // update button
         document.getElementById("remove_" + actorType + i).setAttribute("onClick", "removeAuthor('" + actorType + "', " + (i - 1) + ")");
         document.getElementById("remove_" + actorType + i).id = "remove_" + actorType + (i - 1);
 
         // update campos
-        document.getElementById(actorType + i + "_person_information_complement").name = actorType + (i - 1) + "_person_information_complement"
-        document.getElementById(actorType + i + "_person_information_complement").id = actorType + (i - 1) + "_person_information_complement"
+        document.getElementById(actorType + i + "_name_legend").setAttribute("for", actorType + (i - 1) + "_name");
+        document.getElementById(actorType + i + "_connection_unicamp_legend").setAttribute("for", actorType + (i - 1) + "_connection_unicamp");
+        document.getElementById(actorType + i + "_institute_legend").setAttribute("for", actorType + (i - 1) + "_institute");
+        document.getElementById(actorType + i + "_relationship_victim_legend").setAttribute("for", actorType + (i - 1) + "_relationship_victim");
+        document.getElementById(actorType + i + "_information_complement_legend").setAttribute("for", actorType + (i - 1) + "_information_complement");
+
+        document.getElementById(actorType + i + "_connection_unicamp").name = actorType + (i - 1) + "_connection_unicamp";
+        document.getElementById(actorType + i + "_connection_unicamp_complement").name = actorType + (i - 1) + "_connection_unicamp_complement";
+        document.getElementById(actorType + i + "_institute").name = actorType + (i - 1) + "_institute";
+        document.getElementById(actorType + i + "_name").name = actorType + (i - 1) + "_name"
+        document.getElementById(actorType + i + "_relationship_victim").name = actorType + (i - 1) + "_relationship_victim";
+        document.getElementById(actorType + i + "_relationship_victim_complement").name = actorType + (i - 1) + "_relationship_victim_complement";
+        document.getElementById(actorType + i + "_information_complement").name = actorType + (i - 1) + "_information_complement";
+
+        document.getElementById(actorType + i + "_connection_unicamp").setAttribute("onChange", "displayActorComplement('" + actorType + (i - 1) + "_connection_unicamp')");
+        document.getElementById(actorType + i + "_relationship_victim").setAttribute("onChange", "displayActorComplement('" + actorType + (i - 1) + "_relationship_victim')");
+
+        document.getElementById(actorType + i + "_name_legend").id = actorType + (i - 1) + "_name_legend";
+        document.getElementById(actorType + i + "_name").id = actorType + (i - 1) + "_name"
+        document.getElementById(actorType + i + "_connection_unicamp_legend").id = actorType + (i - 1) + "_connection_unicamp_legend"
+        document.getElementById(actorType + i + "_connection_unicamp").id = actorType + (i - 1) + "_connection_unicamp"
+        document.getElementById(actorType + i + "_connection_unicamp_complement").id = actorType + (i - 1) + "_connection_unicamp_complement"
+        document.getElementById(actorType + i + "_institute_legend").id = actorType + (i - 1) + "_institute_legend";
+        document.getElementById(actorType + i + "_institute").id = actorType + (i - 1) + "_institute";
+        document.getElementById(actorType + i + "_relationship_victim_legend").id = actorType + (i - 1) + "_relationship_victim_legend";
+        document.getElementById(actorType + i + "_relationship_victim").id = actorType + (i - 1) + "_relationship_victim";
+        document.getElementById(actorType + i + "_relationship_victim_complement").id = actorType + (i - 1) + "_relationship_victim_complement";
+        document.getElementById(actorType + i + "_information_complement_legend").id = actorType + (i - 1) + "_information_complement_legend";
+        document.getElementById(actorType + i + "_information_complement").id = actorType + (i - 1) + "_information_complement";
     }
 }
 
