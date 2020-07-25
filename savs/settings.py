@@ -135,4 +135,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 ADMIN_TOOLS_MENU = 'savs.menu.CustomMenu'
-ADMIN_TOOLS_THEMING_CSS = "static.css.styles"
+ADMIN_TOOLS_THEMING_CSS = "css/styles.css"
+ADMIN_TOOLS_INDEX_DASHBOARD = 'savs.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'savs.dashboard.CustomAppIndexDashboard'
