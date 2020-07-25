@@ -1,6 +1,7 @@
 body {
     font-family: "Montserrat";
     text-align: justify;
+    padding: 70px 0% 0%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8,131 +9,104 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-ul {
-    text-align: left;
+strong {
+    font-family: "Montserrat-Bold";
 }
 
-select {
-    width: 100px;
-    text-overflow: ellipsis;
+section:before {
+    height: 20px;
+    content: "";
+    display: block;
 }
 
 
 /* Containers */
-
 .container-fluid {
     padding: 4% 10%;
 }
 
-/* Sections */
-
-.colored-section {
-    background-color: #6f42c1;
-    color: #fff;
+h1 {
+    padding: 0px;
 }
 
-.white-section {
-    color: #6c757d;
-    background-color: #fff;
-}
 
-.card-header {
-    color: #343a40;
-}
-
-.navbar-brand {
-    font-family: "Ubuntu";
-    font-size: 4rem;
-    font-weight: bold;
-}
-
+/* Navbar */
 .nav-item {
-    padding: 0 18px;
+    padding: 0 8px;
 }
 
 .nav-link {
-    font-size: 1.2rem;
-    font-family: "Montserrat-Light";
+    font-size: 1.1rem;
 }
 
-/* Buttons */
-
-.download-button {
-    margin: 5% 3% 5% 0;
+.navbar {
+    padding: 0% 10% 0%;
+    background-color: #7F0FFF;
 }
 
-/* Title Section */
+.navbar .active {
+    background-color: #5c0eb4;
+    border-radius: 20pt;
 
-#title {
-    background-color: #6f42c1;
-    color: #fff;
-    text-align: left;
 }
 
-#title .container-fluid {
-    padding: 0% 15% 0%;
-}
-
-/* Title Image */
-
-.title-image {
-    width: 60%;
-    transform: rotate(25deg);
-    position: absolute;
-    right: 30%;
-}
-
-/* Features Section */
-
-#features {
-    position: relative;
-}
-
-.feature-title {
-    font-size: 1.5rem;
-}
-
-.feature-box {
-    padding: 4.5%;
-}
-
-.icon {
-    color: #ef8172;
-    margin-bottom: 1rem;
-}
-
-.icon:hover {
-    color: #ff4c68;
-}
 
 /* Footer Section */
-
 .social-icon {
     margin: 20px 10px;
 }
 
+.bttn {
+    background-color: lightgray;
+    /* Blue background */
+    border: none;
+    /* Remove borders */
+    color: black;
+    /* White text */
+    padding: 12px 16px;
+    /* Some padding */
+    margin-bottom: 5px;
+    font-size: 16px;
+    /* Set a font size */
+    cursor: pointer;
+    /* Mouse pointer on hover */
+    vertical-align: bottom;
+    float: right;
+}
+
+.bttn:hover {
+    background-color: gray;
+    color: black;
+}
+
 #footer {
-    background-color: #6f42c1; /* New color*/
+    background-color: #7F0FFF;
     text-align: center;
-    color:#000; /* OLD: #343a40*/
-}
-
-#form-identified, #form-1, #form-2, #form-3, #form-4, #submit {
-    display: none; 
-} 
-
-#evidences {
-    color: #fff;
+    color: #FFF;
 }
 
 
+/* Forms */
+#form-identified, #form-1, #form-2, #submit {
+    display: none;
+}
 
-@media (max-width: 1028px) {
-    #title {
-        text-align: center;
-    }
-    .title-image {
-        position: static;
-        transform: rotate(0);
-    }
+.center_img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 300px;
+    padding-top: 30px;
+}
+
+.media {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.mt-0 {
+    text-align: left;
 }

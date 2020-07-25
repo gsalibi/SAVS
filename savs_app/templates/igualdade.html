@@ -1,10 +1,11 @@
 {% extends "./base.html" %} {% block content %}
-<h1>Igualdade de Gênero</h1>
+<!-- Conceitos fundamentais-->
+
 <!-- Missão-->
-<section class="white-section">
+<section id="conceitos">
     <div class="container-fluid">
         <div class="card">
-            <h3 class="card-header">Conceitos fundamentais</h3>
+            <h5 class="card-header">Conceitos fundamentais</h5>
             <div class="card-body">
                 <p class="card-text">
                     De acordo com a Política da Unicamp,<b> discriminação baseada em gênero e/ou sexualidade</b> é qualquer situação que configure a exclusão de um indivíduo de participação ou de benefícios relacionados aos estudos ou ao trabalho na Unicamp
@@ -18,11 +19,11 @@
     </div>
 </section>
 
-<!-- Equipe-->
-<section class="white-section">
+<!-- Política de Combate-->
+<section id="política_de_Combate">
     <div class="container-fluid">
         <div class="card">
-            <h3 class="card-header">Política de Combate à Discriminação baseada em Gênero e/ou Sexualidade</h3>
+            <h5 class="card-header">Política de Combate à Discriminação baseada em Gênero e/ou Sexualidade</h5>
             <div class="card-body">
                 <p class="card-text">A Unicamp, empenhada em garantir a cada membro da universidade condições de estudar e trabalhar em um campus livre de discriminação baseada em gênero e/ou sexualidade está implementando uma Política de Combate à Violência Sexual.
                 </p>
@@ -34,17 +35,21 @@
 </section>
 
 <!-- Relatórios-->
-<section class="white-section">
+<section id="relatorios">
     <div class="container-fluid">
         <div class="card">
-            <h3 class="card-header">Relatórios</h3>
+            <h5 class="card-header">Relatórios</h5>
             <div class="card-body">
-                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p class="card-text">Em breve.</p>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    active = document.getElementsByClassName("active")[0];
+    active.className = "nav-item";
+    document.getElementById("igualdade_item").className = "nav-item dropdown active";
+</script>
 
 {% endblock %}
