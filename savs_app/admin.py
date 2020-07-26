@@ -8,6 +8,7 @@ from .models import (
     IdentifiedComplaint,
     EnvolvedPerson,
     AnonComplainSummary,
+    IdentComplainSummary,
 )
 
 
@@ -105,6 +106,68 @@ class AnonComplainAdmin(admin.ModelAdmin):
         return response
 
     list_filter = ("anonymous_position", "anonymous_gender")
+
+
+
+@admin.register(IdentComplainSummary)
+class IdentComplainAdmin(admin.ModelAdmin):
+    change_list_template = "admin/identified_complains.html"
+    date_hierarchy = "identified_created"
+
+    def changelist_view(self, request, extra_context=None):
+        response = super().changelist_view(request, extra_context=extra_context,)
+
+        period = get_next_in_date_hierarchy(request, self.date_hierarchy,)
+
+        response.context_data["period"] = period
+
+        try:
+            qs = response.context_data["cl"].queryset
+        except (AttributeError, KeyError):
+            return response
+
+        metrics = {
+            "total_genero": Count("identified_gender"),
+        }
+
+        response.context_data["summary"] = list(
+            qs.values("identified_created").annotate(**metrics)
+        )
+        response.context_data["summary_total"] = dict(qs.aggregate(**metrics))
+
+        # Chart
+
+        summary_over_time = (
+            qs.annotate(
+                period=Trunc(
+                    "identified_created", period, output_field=DateTimeField(),
+                ),
+            )
+            .values("period")
+            .annotate(total=Count("identified_position"))
+            .order_by("period")
+        )
+
+        summary_range = summary_over_time.aggregate(
+            low=Min("total"), high=Max("total"),
+        )
+        high = summary_range.get("high", 0)
+        low = summary_range.get("low", 0)
+
+        response.context_data["summary_over_time"] = [
+            {
+                "period": x["period"],
+                "total": x["total"] or 0,
+                "pct": ((x["total"] or 0) - low) / (high - low) * 100
+                if high > low
+                else 0,
+            }
+            for x in summary_over_time
+        ]
+
+        return response
+
+    list_filter = ("identified_position", "identified_gender")
 
 
 admin.site.register(AnonymousComplaint, AnonymousComplaintAdmin)

@@ -195,3 +195,10 @@ class AnonComplainSummary(AnonymousComplaint):
         proxy = True
         verbose_name = 'Anonymous Complaint Summary'
         verbose_name_plural = "Anonymous Complaint Summary"
+
+
+class IdentComplainSummary(IdentifiedComplaint):
+    class Meta:
+        proxy = True
+        verbose_name = 'Identified Complaint Summary'
+        verbose_name_plural = "Identified Complaint Summary"
