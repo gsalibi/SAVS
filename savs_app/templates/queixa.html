@@ -1,5 +1,11 @@
 {% extends "./base.html" %} {% block content %}
 
+<div id="id_success_alert" class="alert alert-success alert-dismissible fade show fixed" role="alert" style="text-align: center; display: none;">
+    <strong>Queixa reportada com sucesso!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
 <form method="POST" id="generalForm"> {% csrf_token %}
 
@@ -363,6 +369,15 @@
     active = document.getElementsByClassName("active")[0];
     active.className = "nav-item";
     document.getElementById("savs_item").className = "nav-item dropdown active";
+
+    {% if submitted %}
+        document.getElementById("id_success_alert").style.display = "block"
+    {% endif %}
+
+    // Prevent form resubmission
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>
 
 {% endblock %}

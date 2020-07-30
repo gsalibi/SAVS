@@ -2876,14 +2876,6 @@ input[type="button"].btn-block {
   .alert-secondary .alert-link {
     color: #4b5454; }
 
-.alert-success {
-  color: #220045;
-  background-color: #d9cce6;
-  border-color: #cab8dd; }
-  .alert-success hr {
-    border-top-color: #bda7d5; }
-  .alert-success .alert-link {
-    color: #090012; }
 
 .alert-info {
   color: #426282;

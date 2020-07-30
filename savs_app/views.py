@@ -14,6 +14,7 @@ def sobre_view(request):
 
 
 def queixa_view(request):
+    submitted = False
     new_complaint = None
     is_identified = request.POST.get("type_complaint") == 'identified'
     identified_form = IdentifiedComplaintForm(request.POST or None)
@@ -23,11 +24,13 @@ def queixa_view(request):
     if is_identified:
         if identified_form.is_valid():
             new_complaint = identified_form.save()
-            identified_form = IdentifiedComplaintForm()
+            identified_form = IdentifiedComplaintForm(None)
+            submitted = True
     else:
         if anonymous_form.is_valid():
             new_complaint = anonymous_form.save()
-            anonymous_form = AnonymousComplaintForm()
+            anonymous_form = AnonymousComplaintForm(None)
+            submitted = True
 
     if new_complaint != None:
         total_accused = request.POST.get("total_accused")
@@ -77,7 +80,8 @@ def queixa_view(request):
     context = {
         'anonymous_form': anonymous_form,
         'identified_form': identified_form,
-        'envolved_form': envolved_form
+        'envolved_form': envolved_form,
+        'submitted': submitted
     }
     return render(request, "queixa.html", context)
 
