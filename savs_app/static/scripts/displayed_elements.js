@@ -51,6 +51,10 @@ function updateRequired(isIdentified) {
         document.getElementById("id_identified_name").required = true
         document.getElementById("id_identified_cpf").required = true
         document.getElementById("id_identified_zipcode").required = true
+        document.getElementById("neighborhood").required = true
+        document.getElementById("city").required = true
+        document.getElementById("state").required = true
+        document.getElementById("address").required = true
         document.getElementById("id_identified_address_number").required = true
         document.getElementById("id_identified_email").required = true
         document.getElementById("id_identified_telephone").required = true
@@ -62,6 +66,10 @@ function updateRequired(isIdentified) {
         document.getElementById("id_identified_name").required = false
         document.getElementById("id_identified_cpf").required = false
         document.getElementById("id_identified_zipcode").required = false
+        document.getElementById("neighborhood").required = false
+        document.getElementById("city").required = false
+        document.getElementById("state").required = false
+        document.getElementById("address").required = false
         document.getElementById("id_identified_address_number").required = false
         document.getElementById("id_identified_email").required = false
         document.getElementById("id_identified_telephone").required = false

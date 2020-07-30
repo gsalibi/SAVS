@@ -33,6 +33,10 @@ function meu_callback(conteudo) {
     else {
         //CEP não Encontrado.
         clearAddressForm();
+        neighborhood.disabled = false;
+        document.getElementById('city').disabled = false;
+        document.getElementById('state').disabled = false;
+        address.disabled = false;
         alert("CEP não encontrado.");
     }
 }
