@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from .models import AnonymousComplaint, IdentifiedComplaint, EnvolvedPerson
 from .forms import AnonymousComplaintForm, IdentifiedComplaintForm, EnvolvedPersonForm
-
+from .models import   (  COMPLAINER_POSITION,
+    COMPLAINER_GENDER,
+    COMPLAINER_RACE,
+    COMPLAINER_SUPPORT_REQUESTED,
+    COMPLAINER_CONNECTION_UNICAMP,
+    EPISODE_DATE,
+    EPISODE_PERIOD,
+    EPISODE_LOCATION,
+    PERSON_RELATIONSHIP_VICTIM,
+    REPORT_STATUS,
+)
 
 def index_view(request):
     return render(request, "base.html")
@@ -105,3 +115,4 @@ def test_show_complaints_view(request):
         'envolved_people': EnvolvedPerson.objects.all()
     }
     return render(request, "TEST_SHOW_COMPLAINTS.html", context)
+

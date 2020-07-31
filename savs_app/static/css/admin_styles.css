@@ -1,0 +1,51 @@
+#header {
+    background-color: #7F0FFF;
+    font-family: "Ubuntu";
+    font-size: 14px;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: white;
+}
+
+#navbar-img {
+    margin-right: 20px;
+}
+
+#content {
+    color: blue;
+}
+
+div.breadcrumbs {
+    background-color: #7100f3;
+}
+
+.module h2,
+.module caption {
+    background-color: #7100f3;
+    margin: 1rem 0rem 1rem;
+}
+
+#tabela_resumo,
+#denuncias,
+#relatorio {
+    margin: 1rem;
+}
+
+@media screen and (max-width: 843px) {
+    #tabela_resumo,
+    #denuncias,
+    #relatorio {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 844px) {
+    #tabela_resumo,
+    #denuncias,
+    #relatorio {
+        width: 80%;
+    }
+}

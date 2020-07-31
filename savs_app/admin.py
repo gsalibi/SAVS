@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.db.models import Count, Sum, Min, Max, DateTimeField
 from django.db.models.functions import Trunc
+from django_admin_listfilter_dropdown.filters import (
+    DropdownFilter, ChoiceDropdownFilter)
 
 # Register your models here.
 from .models import (
@@ -9,6 +11,16 @@ from .models import (
     EnvolvedPerson,
     AnonComplainSummary,
     IdentComplainSummary,
+    COMPLAINER_POSITION,
+    COMPLAINER_GENDER,
+    COMPLAINER_RACE,
+    COMPLAINER_SUPPORT_REQUESTED,
+    COMPLAINER_CONNECTION_UNICAMP,
+    EPISODE_DATE,
+    EPISODE_PERIOD,
+    EPISODE_LOCATION,
+    PERSON_RELATIONSHIP_VICTIM,
+    REPORT_STATUS,
 )
 
 
@@ -105,7 +117,7 @@ class AnonComplainAdmin(admin.ModelAdmin):
 
         return response
 
-    list_filter = ("anonymous_position", "anonymous_gender")
+    list_filter = (("anonymous_position",ChoiceDropdownFilter), ("anonymous_gender", ChoiceDropdownFilter))
 
 
 
@@ -165,11 +177,15 @@ class IdentComplainAdmin(admin.ModelAdmin):
             for x in summary_over_time
         ]
 
+    
+
+        
         return response
-
-    list_filter = ("identified_position", "identified_gender")
-
+   
+    list_filter = (("identified_position", ChoiceDropdownFilter), ("identified_gender", ChoiceDropdownFilter))
+    
 
 admin.site.register(AnonymousComplaint, AnonymousComplaintAdmin)
 admin.site.register(IdentifiedComplaint, IdentifiedComplaintAdmin)
 admin.site.register(EnvolvedPerson)
+

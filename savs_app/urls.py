@@ -12,5 +12,5 @@ urlpatterns = [
     path('savs/', views.savs_view, name='savs'),
     path('queixa/', views.queixa_view, name='queixa'),
     path('participe/', views.participe_view, name='participe'),
-    path('test-complaints/', views.test_show_complaints_view, name='test-complaints'),
+    path('test-complaints/', views.test_show_complaints_view, name='test-complaints'), 
 ]
