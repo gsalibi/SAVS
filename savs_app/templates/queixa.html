@@ -1,5 +1,11 @@
 {% extends "./base.html" %} {% block content %}
 
+<div id="id_success_alert" class="alert alert-success alert-dismissible fade show fixed" role="alert" style="text-align: center; display: none;">
+    <strong>Queixa reportada com sucesso!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
 <form method="POST" id="generalForm"> {% csrf_token %}
 
@@ -86,11 +92,14 @@
                             </legend>
                             <div class="form-check" id="checkboxes">
                                 {{ anonymous_form.anonymous_why_anonymous1 }}
-                                <label class="form-check-label" for="id_anonymous_why_anonymous1"> Porque a pessoa que vivenciou o episódio não quer fazer uma queixa </label>
+                                <label class="form-check-label" for="id_anonymous_why_anonymous1"> Porque a pessoa que
+                                    vivenciou o episódio não quer fazer uma queixa </label>
                             </div>
                             <div class="form-check">
                                 {{ anonymous_form.anonymous_why_anonymous2 }}
-                                <label class="form-check-label" for="id_anonymous_why_anonymous2"> Porque tenho medo de retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica </label>
+                                <label class="form-check-label" for="id_anonymous_why_anonymous2"> Porque tenho medo de
+                                    retaliações que possam prejudicar a minha carreira e/ou a minha vida acadêmica
+                                </label>
                             </div>
                             <div class="form-check">
                                 {{ anonymous_form.anonymous_why_anonymous3 }}
@@ -98,7 +107,8 @@
                             </div>
                             <div class="form-check">
                                 {{ anonymous_form.anonymous_why_anonymous4 }}
-                                <label class="form-check-label" for="id_anonymous_why_anonymous4"> Porque meu objetivo é que a universidade apenas tenha conhecimento deste episódio </label>
+                                <label class="form-check-label" for="id_anonymous_why_anonymous4"> Porque meu objetivo é
+                                    que a universidade apenas tenha conhecimento deste episódio </label>
                             </div>
                             <div class="form-check">
                                 {{ anonymous_form.anonymous_why_anonymous5 }}
@@ -128,13 +138,15 @@
     <!-- Form Personal Infos-->
     <section id="form-identified">
         <div class="container-fluid">
-            <div class="card">
+            <div class="card needs-validation">
                 <h5 class="card-header">Informações Pessoais</h5>
                 <div class="card-body">
                     <br>
                     <div class="form-row">
                         <div class="form-group col-md-9">
                             {{ identified_form.identified_name }}
+                            <div class="valid-feedback">Entrada correta</div>
+                            <div class="invalid-feedback">Por favor, entre com um nome válido</div>
                         </div>
                         <div class="form-group col-md-3">
                             {{ identified_form.identified_cpf }}
@@ -155,11 +167,11 @@
                             {{ identified_form.identified_neighborhood }}
                         </div>
                         <div class="form-group col-md-4">
-                            <input type="text" id="city" class="form-control" placeholder="Endereço" disabled>
+                            <input type="text" id="city" class="form-control" placeholder="Cidade" disabled>
                             {{ identified_form.identified_city }}
                         </div>
                         <div class="form-group col-md-2">
-                            <input type="text" id="state" class="form-control" placeholder="Endereço" disabled>
+                            <input type="text" id="state" class="form-control" placeholder="UF" disabled>
                             {{ identified_form.identified_state }}
                         </div>
                     </div>
@@ -320,7 +332,9 @@
                                     required>
                                 <label class="form-check-label" for="defaultCheck1">
                                     Declaro que li e compreendi o protocolo para recebimentos de queixas e denúncias
-                                    da <a href="/violencia-sexual/#politica" target="_blank">Política de Combate à Violência Sexual</a> e <a href="/igualdade/#pol%C3%ADtica_de_Combate" target="_blank">à Discriminação baseada em Gênero e/ou
+                                    da <a href="/violencia-sexual/#politica" target="_blank">Política de Combate à
+                                        Violência Sexual</a> e <a href="/igualdade/#pol%C3%ADtica_de_Combate"
+                                        target="_blank">à Discriminação baseada em Gênero e/ou
                                         Sexualidade</a> da Unicamp e que concordo com os procedimentos definidos nele.
                                 </label>
                             </div>
@@ -353,6 +367,15 @@
     active = document.getElementsByClassName("active")[0];
     active.className = "nav-item";
     document.getElementById("savs_item").className = "nav-item dropdown active";
+
+    {% if submitted %}
+        document.getElementById("id_success_alert").style.display = "block"
+    {% endif %}
+
+    // Prevent form resubmission
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>
 
 {% endblock %}
