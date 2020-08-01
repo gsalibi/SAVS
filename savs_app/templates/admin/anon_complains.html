@@ -36,51 +36,7 @@
         </div>
     </div>
     <div id="denuncias">
-        <h2> Denúncias Anonimas </h2>
-        <style>
-            .bar-chart {
-                display: flex;
-                justify-content: space-around;
-                height: 160px;
-                padding-top: 60px;
-                overflow: hidden;
-            }
-            
-            .bar-chart .bar {
-                flex: 100%;
-                align-self: flex-end;
-                margin-right: 2px;
-                position: relative;
-                background-color: #79aec8;
-            }
-            
-            .bar-chart .bar:last-child {
-                margin: 0;
-            }
-            
-            .bar-chart .bar:hover {
-                background-color: #417690;
-            }
-            
-            .bar-chart .bar .bar-tooltip {
-                position: relative;
-                z-index: 999;
-            }
-            
-            .bar-chart .bar .bar-tooltip {
-                position: absolute;
-                top: -60px;
-                left: 50%;
-                transform: translateX(-50%);
-                text-align: center;
-                font-weight: bold;
-                opacity: 0;
-            }
-            
-            .bar-chart .bar:hover .bar-tooltip {
-                opacity: 1;
-            }
-        </style>
+        <h2> Denúncias Anônimas por Período </h2>
         <div class="results">
             <div class="bar-chart">
                 {% for x in summary_over_time %}
@@ -95,6 +51,7 @@
     </div>
     <section id='relatorio'>
         <h2 class="module">Relatórios</h2>
+        <p>Clique no botão abaixo para baixar um arquivo .csv de todos os dados de queixas anônimas cujas escolhas sejam fixas</p>
         <input type="button" id="download_button" onclick="location.href='{% url 'savs_app:csv_download_anonymous' %}';" value="Baixar .csv" />
     </section>
 
