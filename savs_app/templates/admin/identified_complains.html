@@ -96,6 +96,8 @@
     </div>
     <section id='relatorio'>
         <h2 class="module">Relatórios</h2>
+        <p>Clique no botão abaixo para baixar um arquivo .csv de todos dados de queixas identificadas cuja escolha é fixa </p>
+        <input type="button" id="download_button" onclick="location.href='{% url 'savs_app:csv_download_identified' %}';" value="Baixar .csv" />
     </section>
 
 </div>

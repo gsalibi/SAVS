@@ -25,13 +25,14 @@ div.breadcrumbs {
 .module h2,
 .module caption {
     background-color: #7100f3;
-    margin: 1rem 0rem 1rem;
+    margin: 1rem 0 1rem;
 }
 
 #tabela_resumo,
 #denuncias,
 #relatorio {
     margin: 1rem;
+    color: black;
 }
 
 @media screen and (max-width: 843px) {
@@ -48,4 +49,17 @@ div.breadcrumbs {
     #relatorio {
         width: 80%;
     }
+}
+
+input#download_button {
+    background-color: #7100f3;
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin: 0 auto;
+}
+
+input#download_button:hover {
+    background-color: #a15aec;
+    color: black;
 }
