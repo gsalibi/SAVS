@@ -108,7 +108,7 @@ class AnonComplainAdmin(admin.ModelAdmin):
                 ),
             )
             .values("period")
-            .annotate(total=Count("anonymous_gender"))
+            .annotate(total=Count("anonymous_created"))
             .order_by("period")
         )
 

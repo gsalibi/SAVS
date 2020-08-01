@@ -86,7 +86,7 @@
                 {% for x in summary_over_time %}
                 <div class="bar" style="height:{{x.pct}}%">
                     <div class="bar-tooltip">
-                        {{x.total | default:0 | intcomma }}<br> {{x.period | date:"d/m/Y"}}
+                        {{x.total | default:0 | intcomma }}<br> {{x.period | date:"m/Y"}}
                     </div>
                 </div>
                 {% endfor %}

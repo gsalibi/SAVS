@@ -158,13 +158,14 @@ def test_show_complaints_view(request):
 @permission_required('admin.can_add_log_entry')
 def csv_download_identified(request):
     title = ['identified_position',
-    'identified_gender',
-    'identified_race',
-    'identified_connection_unicamp', 
-    'identified_episode_date', 
-    'identified_episode_date_period',
-    'identified_episode_location',
-    'identified_current_status']
+            'identified_gender',
+            'identified_race',
+            'identified_connection_unicamp', 
+            'identified_episode_date', 
+            'identified_episode_date_period',
+            'identified_episode_location',
+            'identified_current_status',
+            'identified_created',]
     items =  IdentifiedComplaint.objects.all()
     today = date.today().strftime("%d_%b_%Y")
 
@@ -177,13 +178,14 @@ def csv_download_identified(request):
     for obj in items:
         writer.writerow([
             obj.identified_position,
-    obj.identified_gender,
-    obj.identified_race,
-    obj.identified_connection_unicamp, 
-    obj.identified_episode_date, 
-    obj.identified_episode_date_period,
-    obj.identified_episode_location,
-    obj.identified_current_status,
+            obj.identified_gender,
+            obj.identified_race,
+            obj.identified_connection_unicamp, 
+            obj.identified_episode_date, 
+            obj.identified_episode_date_period,
+            obj.identified_episode_location,
+            obj.identified_current_status,
+            obj.identified_created,
         ])
 
     return response
@@ -191,17 +193,18 @@ def csv_download_identified(request):
 @permission_required('admin.can_add_log_entry')
 def csv_download_anonymous(request):
     title = ['anonymous_position',
-    'anonymous_gender',
-    'anonymous_race',
-    'anonymous_connection_unicamp', 
-    'anonymous_support_requested',
-    'anonymous_episode_date', 
-    'anonymous_episode_date_period',
-    'anonymous_episode_location',
-    'anonymous_current_satus']
-    items =  AnonymousComplaint.objects.values(title)
-    today = date.today().strftime("%d_%b_%Y")
+            'anonymous_gender',
+            'anonymous_race',
+            'anonymous_connection_unicamp', 
+            'anonymous_support_requested',
+            'anonymous_episode_date', 
+            'anonymous_episode_date_period',
+            'anonymous_episode_location',
+            'anonymous_current_satus',
+            'anonymous_created',]
+    items =  AnonymousComplaint.objects.all()
 
+    today = date.today().strftime("%d_%b_%Y")
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] ='attachment; filename="anonymous_complaints_'+today+'.csv"'
 
@@ -211,14 +214,15 @@ def csv_download_anonymous(request):
     for obj in items:
         writer.writerow([
             obj.anonymous_position,
-    obj.anonymous_gender,
-    obj.anonymous_race,
-    obj.anonymous_connection_unicamp, 
-    obj.anonymous_support_requested,
-    obj.anonymous_episode_date, 
-    obj.anonymous_episode_date_period,
-    obj.anonymous_episode_location,
-    obj.anonymous_current_status,
+            obj.anonymous_gender,
+            obj.anonymous_race,
+            obj.anonymous_connection_unicamp, 
+            obj.anonymous_support_requested,
+            obj.anonymous_episode_date, 
+            obj.anonymous_episode_date_period,
+            obj.anonymous_episode_location,
+            obj.anonymous_current_status,
+            obj.anonymous_created
         ])
 
     return response
