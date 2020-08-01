@@ -2,7 +2,9 @@ from django.contrib import admin
 from django.db.models import Count, Sum, Min, Max, DateTimeField
 from django.db.models.functions import Trunc
 from django_admin_listfilter_dropdown.filters import (
-    DropdownFilter, ChoiceDropdownFilter)
+    DropdownFilter,
+    ChoiceDropdownFilter,
+)
 
 # Register your models here.
 from .models import (
@@ -63,6 +65,17 @@ class AnonymousComplaintAdmin(admin.ModelAdmin):
 class AnonComplainAdmin(admin.ModelAdmin):
     change_list_template = "admin/anon_complains.html"
     date_hierarchy = "anonymous_created"
+    actions = None
+    # Prevent additional queries for pagination.
+    show_full_result_count = False
+
+    list_filter = (
+        ("anonymous_current_status", ChoiceDropdownFilter),
+        ("anonymous_position", ChoiceDropdownFilter),
+        ("anonymous_gender", ChoiceDropdownFilter),
+        ("anonymous_race", ChoiceDropdownFilter),
+        ("anonymous_connection_unicamp", ChoiceDropdownFilter),
+    )
 
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(request, extra_context=extra_context,)
@@ -81,8 +94,9 @@ class AnonComplainAdmin(admin.ModelAdmin):
         }
 
         response.context_data["summary"] = list(
-            qs.values("anonymous_created").annotate(**metrics)
+            qs.values("anonymous_created").annotate(**metrics).order_by("anonymous_created")
         )
+
         response.context_data["summary_total"] = dict(qs.aggregate(**metrics))
 
         # Chart
@@ -94,7 +108,7 @@ class AnonComplainAdmin(admin.ModelAdmin):
                 ),
             )
             .values("period")
-            .annotate(total=Count("anonymous_position"))
+            .annotate(total=Count("anonymous_gender"))
             .order_by("period")
         )
 
@@ -116,8 +130,6 @@ class AnonComplainAdmin(admin.ModelAdmin):
         ]
 
         return response
-
-    list_filter = (("anonymous_position",ChoiceDropdownFilter), ("anonymous_gender", ChoiceDropdownFilter))
 
 
 
@@ -129,10 +141,6 @@ class IdentComplainAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(request, extra_context=extra_context,)
 
-        period = get_next_in_date_hierarchy(request, self.date_hierarchy,)
-
-        response.context_data["period"] = period
-
         try:
             qs = response.context_data["cl"].queryset
         except (AttributeError, KeyError):
@@ -143,11 +151,14 @@ class IdentComplainAdmin(admin.ModelAdmin):
         }
 
         response.context_data["summary"] = list(
-            qs.values("identified_created").annotate(**metrics)
+            qs.values("identified_created").annotate(**metrics).order_by("identified_created")
         )
         response.context_data["summary_total"] = dict(qs.aggregate(**metrics))
 
         # Chart
+
+        period = get_next_in_date_hierarchy(request, self.date_hierarchy,)
+        response.context_data["period"] = period
 
         summary_over_time = (
             qs.annotate(
@@ -156,7 +167,7 @@ class IdentComplainAdmin(admin.ModelAdmin):
                 ),
             )
             .values("period")
-            .annotate(total=Count("identified_position"))
+            .annotate(total=Count("identified_created"))
             .order_by("period")
         )
 
@@ -177,15 +188,17 @@ class IdentComplainAdmin(admin.ModelAdmin):
             for x in summary_over_time
         ]
 
-    
-
-        
         return response
-   
-    list_filter = (("identified_position", ChoiceDropdownFilter), ("identified_gender", ChoiceDropdownFilter))
-    
+
+    list_filter = (
+        ("identified_current_status", ChoiceDropdownFilter),
+        ("identified_position", ChoiceDropdownFilter),
+        ("identified_gender", ChoiceDropdownFilter),
+        ("identified_race", ChoiceDropdownFilter),
+        ("identified_connection_unicamp", ChoiceDropdownFilter),
+    )
+
 
 admin.site.register(AnonymousComplaint, AnonymousComplaintAdmin)
 admin.site.register(IdentifiedComplaint, IdentifiedComplaintAdmin)
 admin.site.register(EnvolvedPerson)
-
