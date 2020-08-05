@@ -13,16 +13,7 @@ from .models import (
     EnvolvedPerson,
     AnonComplainSummary,
     IdentComplainSummary,
-    COMPLAINER_POSITION,
-    COMPLAINER_GENDER,
-    COMPLAINER_RACE,
-    COMPLAINER_SUPPORT_REQUESTED,
-    COMPLAINER_CONNECTION_UNICAMP,
-    EPISODE_DATE,
-    EPISODE_PERIOD,
-    EPISODE_LOCATION,
-    PERSON_RELATIONSHIP_VICTIM,
-    REPORT_STATUS,
+
 )
 
 
@@ -35,7 +26,20 @@ def get_next_in_date_hierarchy(request, date_hierarchy):
         return "week"
     return "month"
 
+class EnvolvedPersonAdmin(admin.ModelAdmin):
+    list_display = (
+        "person_name",
+        "person_connecton_unicamp",
+        "person_relationship_victim",
+        "is_accused",
+    )
+    list_filter =(
+        ("person_connecton_unicamp", ChoiceDropdownFilter),
+        "is_accused", 
 
+    )
+
+@admin.register(IdentifiedComplaint)
 class IdentifiedComplaintAdmin(admin.ModelAdmin):
     list_display = (
         "identified_name",
@@ -47,8 +51,16 @@ class IdentifiedComplaintAdmin(admin.ModelAdmin):
         "identified_race",
         "identified_email",
     )
+    
+    list_filter = (
+        ("identified_current_status", ChoiceDropdownFilter),
+        ("identified_position", ChoiceDropdownFilter),
+        ("identified_gender", ChoiceDropdownFilter),
+        ("identified_race", ChoiceDropdownFilter),
+        ("identified_connection_unicamp", ChoiceDropdownFilter),
+    )
 
-
+@admin.register(AnonymousComplaint)
 class AnonymousComplaintAdmin(admin.ModelAdmin):
     list_display = (
         "anonymous_created",
@@ -58,6 +70,14 @@ class AnonymousComplaintAdmin(admin.ModelAdmin):
         "anonymous_race",
         "anonymous_connection_unicamp",
         "anonymous_support_requested",
+    )
+    list_filter = (
+        ("anonymous_current_status", ChoiceDropdownFilter),
+        ("anonymous_support_requested", ChoiceDropdownFilter),
+        ("anonymous_position", ChoiceDropdownFilter),
+        ("anonymous_gender", ChoiceDropdownFilter),
+        ("anonymous_race", ChoiceDropdownFilter),
+        ("anonymous_connection_unicamp", ChoiceDropdownFilter),
     )
 
 
@@ -122,7 +142,7 @@ class AnonComplainAdmin(admin.ModelAdmin):
             {
                 "period": x["period"],
                 "total": x["total"] or 0,
-                "pct": ((x["total"] or 0) - low) / (high - low) * 100
+                "pct": ((x["total"] or 0)) / (high) * 100
                 if high > low
                 else 100
                 if high == low
@@ -183,7 +203,7 @@ class IdentComplainAdmin(admin.ModelAdmin):
             {
                 "period": x["period"],
                 "total": x["total"] or 0,
-                "pct": ((x["total"] or 0) - low) / (high - low) * 100
+                "pct": ((x["total"] or 0)) / (high) * 100
                 if high > low
                 else 100
                 if high == low
@@ -203,6 +223,6 @@ class IdentComplainAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(AnonymousComplaint, AnonymousComplaintAdmin)
-admin.site.register(IdentifiedComplaint, IdentifiedComplaintAdmin)
-admin.site.register(EnvolvedPerson)
+#admin.site.register(AnonymousComplaint, AnonymousComplaintAdmin)
+#admin.site.register(IdentifiedComplaint, IdentifiedComplaintAdmin)
+admin.site.register(EnvolvedPerson, EnvolvedPersonAdmin)
