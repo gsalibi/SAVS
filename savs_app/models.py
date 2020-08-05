@@ -127,7 +127,7 @@ class AnonymousComplaint(models.Model):
     anonymous_created = models.DateTimeField(auto_now_add=True, null=True)
     anonymous_updated_at = models.DateTimeField(auto_now=True, null=True)
     anonymous_current_status = models.TextField(
-        choices=REPORT_STATUS, default=None, null=True
+        choices=REPORT_STATUS, default=REPORT_STATUS[0][0], null=True
     )
 
 
@@ -169,7 +169,7 @@ class IdentifiedComplaint(models.Model):
     identified_created = models.DateTimeField(auto_now_add=True, null=True)
     identified_updated_at = models.DateTimeField(auto_now=True, null=True)
     identified_current_status = models.TextField(
-        choices=REPORT_STATUS, default=None, null=True
+        choices=REPORT_STATUS, default=REPORT_STATUS[0][0], null=True
     )
 
 
