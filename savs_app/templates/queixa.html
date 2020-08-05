@@ -8,13 +8,11 @@
   </div>
 
 <form method="POST" id="generalForm"> {% csrf_token %}
-
-
     <id name="envolvedPersonForm" style="display: none;">
         {{ envolved_form.as_p }}
     </id>
 
-    <!-- Form type -->
+    <!-- type -->
     <section id="form-type">
         <div class="container-fluid">
             <div class="card">
@@ -135,7 +133,7 @@
     </section>
 
 
-    <!-- Form Personal Infos-->
+    <!-- Personal Infos-->
     <section id="form-identified">
         <div class="container-fluid">
             <div class="card needs-validation">
@@ -237,7 +235,7 @@
     </section>
 
 
-    <!-- Form Complaint-->
+    <!-- Complaint-->
     <section id="form-1">
         <div class="container-fluid">
             <div class="card">
